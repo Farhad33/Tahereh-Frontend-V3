@@ -18,15 +18,15 @@ export default function Menu() {
         <>
             <Header>
                 <HamMenu onClick={handleClick}>
-                    <Image src={`./${hamMenu}.png`} />
+                    <Link href='/'><Image src={`./${hamMenu}.png`} /></Link>
                 </HamMenu>
                 <Items menu={ hamMenu }>
-                    <Item>Home</Item>
-                    <Link href='/collection'><Item>Collection</Item></Link>
+                    <Link href='/'><Item>Home</Item></Link>
+                    <Link href='/collections'><Item>Collection</Item></Link>
                     <Item>Contact Us</Item>
                     <Item>About Me</Item>
                 </Items>
-                <Logo src="/logo.png" />
+                <Link href='/'><Logo src="/logo.png" /></Link>
             </Header>
         </>
     )
@@ -40,6 +40,7 @@ const Line = styled.div`
 
 const HamMenu = styled.div`
     display: none;
+    cursor: pointer;
     @media only screen and (max-width: 600px) {
         display: block;
         z-index: 2;
@@ -48,6 +49,7 @@ const HamMenu = styled.div`
 
 const Image = styled.img`
     width: 80px;
+    cursor: pointer;
 `
 
 const Header = styled.header`
@@ -69,6 +71,7 @@ const Header = styled.header`
 const Logo = styled.img`
     width: 80px;
     z-index: 30000000;
+    cursor: pointer;
 `
 
 const Items = styled.ul`
@@ -105,6 +108,7 @@ const Item = styled.li`
     color: ${color.secondary};
     font-size: 22px;
     font-weight: 400;
+    cursor: pointer;
     @media only screen and (max-width: 600px) {
         border-right: none;
         border-top: 1px solid ${color.secondary};

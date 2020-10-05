@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import Menu from '../shared/Menu'
 import { color } from '../../util/variables'
 import Categories from './Categories'
 
-export default function Collection() {
+export default function Collections() {
+
+
     return (
         <>
             <Menu />
