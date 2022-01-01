@@ -10,9 +10,8 @@ export default function Categories() {
     const [mode, setMode] = useState('read')
 
     useEffect(() => {
-        api.get('/collection')
+        api.get('/collections')
         .then(result => {
-            console.log('result.data',result.data);
             setCollections(result.data)
         })
     }, [])
