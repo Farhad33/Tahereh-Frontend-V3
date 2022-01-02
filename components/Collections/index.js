@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import Menu from '../shared/Menu'
 import { color } from '../../util/variables'
 import Categories from './Categories'
 
@@ -8,19 +7,16 @@ export default function Collections() {
 
 
     return (
-        <>
-            <Menu />
-            <Container>
-                <Title>AVIOR DESIGN</Title>
-                <LineContainer>
-                    <Line />
-                    <Diamond />
-                    <Line />
-                </LineContainer>
-                <Follow>Follow your dreams</Follow>
-                <Categories />
-            </Container>
-        </>
+        <Container>
+            <Title>AVIOR DESIGN</Title>
+            <LineContainer>
+                <Line />
+                <Diamond />
+                <Line />
+            </LineContainer>
+            <Follow>Follow your dreams</Follow>
+            <Categories />
+        </Container>
     )
 }
 

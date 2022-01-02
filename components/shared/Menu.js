@@ -23,7 +23,7 @@ export default function Menu() {
                 <Items menu={ hamMenu }>
                     <Link href='/'><Item>Home</Item></Link>
                     <Link href='/collections'><Item>Collection</Item></Link>
-                    <Item>Contact Us</Item>
+                    <Link href='/contact-us'><Item>Contact Us</Item></Link>
                     <Item>About Me</Item>
                 </Items>
                 <Link href='/'><Logo src="/logo.png" /></Link>
