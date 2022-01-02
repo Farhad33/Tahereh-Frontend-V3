@@ -1,17 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-import Menu from '../shared/Menu'
 import MainPicture from './MainPicture'
-import SideLine from '../shared/SideLine'
 
 
 export default function Homepage() {
     return (
         <Container>
-            <Menu />
             <MainPicture />
-            <SideLine direction='bottom-left'/>
-            <SideLine direction='top-right'/>
         </Container>
     )
 }
