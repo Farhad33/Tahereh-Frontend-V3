@@ -1,6 +1,7 @@
 import Layout from '../components/shared/Layout'
 import GlobasStyles from '../components/shared/GlobalStyles';
 import { ThemeProvider } from 'styled-components'
+
 export default function MyApp({ Component, pageProps }) {
   const theme = {
     colors: {

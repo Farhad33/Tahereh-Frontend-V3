@@ -1,11 +1,13 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobasStyles = createGlobalStyle`
-    /* *{
-        box-sizing: border-box;
-    }
 
-    body {
+    /* /* *{
+        box-sizing: border-box;
+    } */
+
+
+    /* body {
     width: 100%;
     overflow-x: hidden;
     min-height: 100vh;
@@ -22,6 +24,5 @@ ul {
     list-style-type: none;
 } */
 `
-
 
 export default GlobasStyles;

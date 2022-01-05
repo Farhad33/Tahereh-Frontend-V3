@@ -1,6 +1,5 @@
 import styled from 'styled-components'
-
-
+// import { Head } from 'next/head';
 
 export default function ContactUs() {
     return (
@@ -14,11 +13,10 @@ export default function ContactUs() {
             </Inner>
             <ContactDetails>
                 <Item><img src="./img/contactus1.png" alt="contact us" /> <p>Kermanshah</p></Item>
-                {/* <Item><img src="./img/contactus2.png" alt="contact us" /> <p>09188563812</p></Item>
-                <Item><img src="./img/contactus3.png" alt="contact us" /> <p>http://www.Aviror.com</p></Item> */}
+                <Item><img src="./img/contactus2.png" alt="contact us" /> <p>09188563812</p></Item>
+                <Item><img src="./img/contactus3.png" alt="contact us" /> <p>http://www.Aviror.com</p></Item>
             </ContactDetails>
         </Contactdiv>
-
     )
 }
 
@@ -30,17 +28,18 @@ const Contactdiv = styled.div`
 `
 
 const Inner = styled.div`
-    width    : 572px ;
+    width: 572px;
     margin-bottom: 60px;
-    h2{
+    h2 {
         color: ${({ theme }) => theme.colors.headerTextColor};
         text-align: center;
         font-size: 50px;
+        font-family: 'Poppins', sans-serif;
     }
-    h3{
+    h3 {
         letter-spacing: 6px;
-        font-size:18px;
-        color:rgba(14, 49, 15, 0.5);
+        font-size: 18px;
+        color: rgba(14, 49, 15, 0.5);
         text-align: center;
     }
 `
@@ -67,12 +66,12 @@ const ContactDetails = styled.div`
     border: 1px solid ${({ theme }) => theme.colors.headerTextColor};
     width: 572px;
     height: auto;
-    padding:32px;
+    padding: 32px;
     @media (max-width: 576px) {
         padding: 24px;
     }
-    display:flex;
-    flex-direction:column;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
 `
 
@@ -89,5 +88,4 @@ const Item = styled.div`
         width: auto;
         height: 30px;
     }
-
 `
