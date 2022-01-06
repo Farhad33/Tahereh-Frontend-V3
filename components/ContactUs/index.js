@@ -5,9 +5,9 @@ export default function ContactUs() {
         <Contactdiv>
             <Inner>
                 <h2>SAELS MANAGER</h2>
-                <Hrdiv>
+                <HorzontalLine>
                     <span></span>
-                </Hrdiv>
+                </HorzontalLine>
                 <h3>Follow your dreams</h3>
             </Inner>
             <ContactDetails>
@@ -30,10 +30,10 @@ const Inner = styled.div`
     width: 572px;
     margin-bottom: 60px;
     h2 {
-        color: ${({ theme }) => theme.colors.headerTextColor};
+        color: ${({ theme: { colors } }) => colors.headerTextColor};
         text-align: center;
         font-size: 50px;
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Purple Purse';
     }
     h3 {
         letter-spacing: 6px;
@@ -41,12 +41,21 @@ const Inner = styled.div`
         color: rgba(14, 49, 15, 0.5);
         text-align: center;
     }
+    @media (max-width: ${({ theme: { breakPoints } }) => breakPoints.mobile}){
+        width: 100%;
+        h2{
+            font-size: 32px;
+        }
+        h3{
+            font-size: 14px;
+        }
+    }
 `
 
-const Hrdiv = styled.div`
+const HorzontalLine = styled.div`
     width: 100%;
     height:1px;
-    background-color: ${({ theme }) => theme.colors.headerTextColor};
+    background-color: ${({ theme: { colors } }) => colors.headerTextColor};
     position: relative;
     margin: 19px 0 28px;
     span {
@@ -62,11 +71,12 @@ const Hrdiv = styled.div`
 `
 
 const ContactDetails = styled.div`
-    border: 1px solid ${({ theme }) => theme.colors.headerTextColor};
+    border: 1px solid ${({ theme: { colors } }) => colors.headerTextColor};
     width: 572px;
     height: auto;
     padding: 32px;
-    @media (max-width: 576px) {
+    @media (max-width: ${({ theme: { breakPoints } }) => breakPoints.mobile}) {
+        width: 94%;
         padding: 24px;
     }
     display: flex;

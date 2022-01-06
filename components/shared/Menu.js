@@ -4,8 +4,8 @@ import Link from 'next/link'
 import { color } from '../../util/variables'
 
 export default function Menu() {
-    const [ hamMenu, setHamMenu ] = useState("ham")
-    
+    const [hamMenu, setHamMenu] = useState("ham")
+
     const handleClick = () => {
         if (hamMenu === "ham") {
             setHamMenu("times")
@@ -18,13 +18,13 @@ export default function Menu() {
         <>
             <Header>
                 <HamMenu onClick={handleClick}>
-                    <Link href='/'><Image src={`./${hamMenu}.png`} /></Link>
+                    <Image src={`./${hamMenu}.png`} />
                 </HamMenu>
-                <Items menu={ hamMenu }>
+                <Items menu={hamMenu}>
                     <Link href='/'><Item>Home</Item></Link>
                     <Link href='/collections'><Item>Collection</Item></Link>
                     <Link href='/contact-us'><Item>Contact Us</Item></Link>
-                    <Item>About Me</Item>
+                    <Link href='/about-me'><Item>About Me</Item></Link>
                 </Items>
                 <Link href='/'><Logo src="/logo.png" /></Link>
             </Header>
@@ -85,8 +85,8 @@ const Items = styled.ul`
     }
     @media only screen and (max-width: 600px) {
         z-index: 1;
-        display: ${({menu}) => menu === 'ham' ? 'none' : 'flex'};
-        flex-direction: ${({menu}) => menu === 'ham' ? '' : 'column'};
+        display: ${({ menu }) => menu === 'ham' ? 'none' : 'flex'};
+        flex-direction: ${({ menu }) => menu === 'ham' ? '' : 'column'};
         position: absolute;
         background-color: #d2f6d4e8;
         width: 100%;
