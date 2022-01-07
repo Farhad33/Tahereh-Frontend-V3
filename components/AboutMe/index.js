@@ -7,7 +7,7 @@ const Aboutme = () => {
             <Maindiv>
                   <h1><span>TA</span><span>HEREH</span></h1>
                   <Discription>
-                        <Avatar />
+                        <img src="./img/02.jpg" alt="" />
                         <p>For over 12 years, Tahereh Najafi has been a noteworthy sewing teacher in private institutions.
                               You may know her work as the sewing teacher and dressmaker but she’s also credited with Ministry of Culture organization.
                               Tahereh has been honored with many prizes at the Fashion Festival in Iran.
@@ -31,7 +31,7 @@ export default Aboutme
 //       position: relative;
 //       h1 {
 //             font-size: 100px;
-//             color: #C9D2CA;
+//             color: ${()};
 
 //             font-family: Purple Purse;
 //             font-style: normal;
@@ -49,7 +49,7 @@ const Maindiv = styled.div`
       flex-direction: column;
       h1 {
             /* font-size: 100px;
-            color: #C9D2CA;
+            color: ${({ theme: { colors } }) => colors.grey};
             font-family: Purple Purse;
             font-style: normal;
             font-weight: normal;
@@ -69,15 +69,18 @@ const Maindiv = styled.div`
             font-size: 13vw;
             line-height: 225px;
 
-            color: #C9D2CA;
+            color: ${({ theme: { colors } }) => colors.grey};
 
             /* mix-blend-mode: multiply; */
             span:first-child{
-                  margin-right: 18vw;
+                  margin-right: 14vw;
                   @media (max-width: ${({ theme: { breakPoints } }) => breakPoints.mobile}){
-                        margin-right: unset;
+                        margin-right: 27vw;
                   }
             }
+      @media (max-width: ${({ theme: { breakPoints } }) => breakPoints.mobile}){
+            padding-top: 100px;
+      }
 }
 `
 
@@ -89,12 +92,23 @@ const Discription = styled.div`
       justify-content: center;
       align-items: center;
       position: absolute;
-      top: 28%;
-      left: 21vw;
+      top: 250px;
+      left: 26vw;
+      /* top: 19%; */
+      @media (max-width: ${({ theme: { breakPoints } }) => breakPoints.tablet}){
+                        top: 300px;
+      }
+      @media (max-width: ${({ theme: { breakPoints } }) => breakPoints.mobile}){
+            top: 220px;
+            left: 21vw;
+      }
+
+
       p {
             /* width: 600px; */
             /* position: absolute; */
-            padding-top: 100px;
+            /* margin-top: -150px; */
+            padding-top: 110px;
             padding-left: 10px;
             width: 37vw;
             height: 238px;
@@ -102,25 +116,36 @@ const Discription = styled.div`
             top: 454px; */
 
             font-family: Roboto;
+            font-size: 1.3vw;
             font-style: normal;
             font-weight: normal;
-            font-size: 1.3vw;
-            line-height: 34px;
-            text-align: justify;
+            line-height: 3vw;
             letter-spacing: -0.03em;
 
             color: rgba(14, 49, 15, 0.63);
+            @media (max-width: ${({ theme: { breakPoints } }) => breakPoints.mobile}){
+                  line-height: 20px;
+                  width:43vw;
+                  font-size: 14px;
 
+            }
+
+
+      }
+      img {
+            /* position: absolute; */
+            width: 21vw;
+            height: 21vw;
+            /* left: calc(50% - 438px/2 - 246px);
+            top: 282px; */
+            /* background: ${localimage}; */
+            border-radius: 50%;
+            border: 3px solid ${({ theme: { colors } }) => colors.grey};
+            @media (max-width: ${({ theme: { breakPoints } }) => breakPoints.mobile}){
+                  width: 31vw;
+                  height: 31vw; 
+                  border-color: ${({ theme: { colors } }) => colors.darkGreen};
+            }
       }
 
 `
-const Avatar = styled.div`
-      /* position: absolute; */
-      width: 30vw;
-      height: 30vw;
-      /* left: calc(50% - 438px/2 - 246px);
-      top: 282px; */
-      /* background: ${localimage}; */
-      border-radius: 50%;
-      border: 3px solid #C9D2CA;
-      `
