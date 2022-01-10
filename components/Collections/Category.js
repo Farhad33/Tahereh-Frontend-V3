@@ -38,15 +38,15 @@ export default function Category({product :{ id = null, name = '', photo_alt = '
     return (
         <Container>
             <ImageContainer>
-                <Image src={photo} alt={photo_alt}/>
+                <Image src={ baseURL + '/public/' + photo} alt={photo_alt}/>
             </ImageContainer>
             { mode === 'edit' ? <>
                 <ChooseFile type="file" onChange={(e) => setSelectedFile(e.target.files[0])} />
                 <input value={photoAlt} onChange={(e) => setPhotoAlt(e.target.value)} />
+                <EditButton onClick={handleEditButton}>
+                    { mode === 'edit' ? 'Submit' : 'Edit' }
+                </EditButton>
             </> : '' }
-            <EditButton onClick={handleEditButton}>
-                { mode === 'edit' ? 'Submit' : 'Edit' }
-            </EditButton>
             <Line />
             { mode === 'edit' ? <input value={title} onChange={(e) => setTitle(e.target.value)} /> : <Title>{title}</Title> }
          </Container>
