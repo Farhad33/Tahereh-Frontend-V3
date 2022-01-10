@@ -4,7 +4,7 @@ export const baseURL = 'http://localhost:4001'
 
 const instance =  axios.create({
     baseURL,
-    timeout: 2000
+    timeout: 5000
 })
 
 instance.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded';

@@ -6,7 +6,7 @@ export default function ContactUs() {
             <Inner>
                 <h2>SAELS MANAGER</h2>
                 <HorzontalLine>
-                    <span></span>
+                    <Star />
                 </HorzontalLine>
                 <h3>Follow your dreams</h3>
             </Inner>
@@ -58,16 +58,17 @@ const HorzontalLine = styled.div`
     background-color: ${({ theme: { colors } }) => colors.headerTextColor};
     position: relative;
     margin: 19px 0 28px;
-    span {
-        position: absolute;
-        left:50%;
-        top: -2px;
-        width: 20px;
-        height: 20px;
-        background-color: #869E87;
-        border-radius: 3px;
-        transform: rotate(45deg) translateX(-50%) ;
-    }
+`
+
+const Star = styled.span`
+    position: absolute;
+    left:50%;
+    top: -2px;
+    width: 20px;
+    height: 20px;
+    background-color: #869E87;
+    border-radius: 3px;
+    transform: rotate(45deg) translateX(-50%) ;
 `
 
 const ContactDetails = styled.div`
