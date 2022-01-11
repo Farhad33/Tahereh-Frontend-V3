@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import { useRouter } from 'next/router'
 import { color } from '../../util/variables'
 import Categories from './Products'
 
-export default function Collections() {
-
+export default function Products() {
+    const router = useRouter()
+    const props = router.query;
+    console.log('products is => ', props)
 
     return (
         <Container>
