@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import api, { baseURL } from '../../util/api'
 import { color } from '../../util/variables'
-import Link from 'next/link'
+
 
 export default function Category({ product: { id = null, name = '', photo_alt = '', photo_src = '' } }) {
     const [mode, setMode] = useState('read')
@@ -49,9 +49,6 @@ export default function Category({ product: { id = null, name = '', photo_alt = 
             </> : ''}
             <Line />
             {mode === 'edit' ? <input value={title} onChange={(e) => setTitle(e.target.value)} /> : <Title>{title}</Title>}
-            <Link href={`/product/${id}`}>
-                <span>__________</span>
-            </Link>
         </Container>
     )
 }
@@ -71,12 +68,6 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     margin: 4%;
-    position: relative;
-    a{
-        position: absolute;
-        width: 100%;
-        height: 100%;
-    }
     `
 const ImageContainer = styled.div`
     display: flex;

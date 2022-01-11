@@ -1,27 +1,28 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import api from '../../util/api'
-import Category from './Category'
+import Category from './ProductItem'
 
 
-export default function Categories() {
-    const [collections, setCollections] = useState([])
+export default function Products(props) {
+    console.log("🚀 ~ file: Products.js ~ line 8 ~ Products ~ props", props)
+    const [products, setProducts] = useState([])
     const [mode, setMode] = useState('read')
 
-    useEffect(() => {
-        api.get('/collections')
-            .then(result => {
-                setCollections(result.data)
-            })
-    }, [])
+    // useEffect(() => {
+    //     api.get('/products')
+    //         .then(result => {
+    //             setProducts(result.data)
+    //         })
+    // }, [])
 
 
 
     return (
         <Container>
-            {collections.map(product => (
+            {/* {products.map(product => (
                 <Category key={product.id} product={product} />
-            ))}
+            ))} */}
         </Container>
     )
 }
