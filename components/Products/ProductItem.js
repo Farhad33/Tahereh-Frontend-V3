@@ -4,7 +4,7 @@ import api, { baseURL } from '../../util/api'
 import { color } from '../../util/variables'
 
 
-export default function Category({ product: { id = null, name = '', photo_alt = '', photo_src = '' } }) {
+export default function Productitem({ product: { id = null, name = '', photo_alt = '', photo_src = '' } }) {
     const [mode, setMode] = useState('read')
     const [title, setTitle] = useState(name)
     const [selectedFile, setSelectedFile] = useState(null)

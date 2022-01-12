@@ -19,8 +19,8 @@ export default function Categories() {
 
     return (
         <Container>
-            {collections.map(product => (
-                <Category key={product.id} product={product} />
+            {collections.map(collection => (
+                <Category key={collection.id} collection={collection} />
             ))}
         </Container>
     )

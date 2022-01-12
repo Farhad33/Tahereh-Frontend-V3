@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import api from '../../util/api'
-import Productitem from './ProductItem'
+import Category from './ProductItem'
 
 
-export default function ProductsList(props) {
-    console.log("🚀 ~ file: Products.js ~ line 8 ~ Products ~ props", props)
-    const [products, setProducts] = useState([])
+export default function ProductsList(ب) {
+    const router = useRouter()
+    const props = router.query;
+    // console.log('products is => ', props)
+    const [productsList, setProductsList] = useState([])
     const [mode, setMode] = useState('read')
 
     // useEffect(() => {
-    //     api.get('/products')
+    //     api.get(`collections/${props.collection_id}/products`)
     //         .then(result => {
     //             setProducts(result.data)
     //         })

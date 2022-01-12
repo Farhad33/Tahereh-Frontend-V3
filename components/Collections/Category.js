@@ -4,7 +4,7 @@ import api, { baseURL } from '../../util/api'
 import { color } from '../../util/variables'
 import Link from 'next/link'
 
-export default function Category({ product: { id = null, name = '', photo_alt = '', photo_src = '' } }) {
+export default function Category({ collection: { id = null, name = '', photo_alt = '', photo_src = '' } }) {
     const [mode, setMode] = useState('read')
     const [title, setTitle] = useState(name)
     const [selectedFile, setSelectedFile] = useState(null)
@@ -36,6 +36,7 @@ export default function Category({ product: { id = null, name = '', photo_alt = 
     }
 
     return (
+        // <Link href={`collections/${id}/products/${productId}`}>
         <Link href={`collections/${id}/products`}>
             <Container>
                 <ImageContainer>
