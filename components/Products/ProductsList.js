@@ -1,30 +1,35 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import api from '../../util/api'
-import Category from './ProductItem'
+import ProductItem from './ProductItem'
+import { useRouter } from 'next/router'
 
 
-export default function ProductsList(ب) {
+export default function ProductsList() {
     const router = useRouter()
     const props = router.query;
     // console.log('products is => ', props)
     const [productsList, setProductsList] = useState([])
+    // console.log("🚀 ~ file: ProductsList.js ~ line 13 ~ ProductsList ~ setProductsList", productsList);
     const [mode, setMode] = useState('read')
 
-    // useEffect(() => {
-    //     api.get(`collections/${props.collection_id}/products`)
-    //         .then(result => {
-    //             setProducts(result.data)
-    //         })
-    // }, [])
+    useEffect(() => {
+        api.get(`collections/${props.collection_id}`)
+            .then(result => {
+                // console.log("🚀 ~ file: ProductsList.js ~ line 19 ~ useEffect ~ result", result)
+                setProductsList(result.data)
+            })
+    }, [])
 
 
 
     return (
         <Container>
-            {/* {products.map(product => (
-                <Category key={product.id} product={product} />
-            ))} */}
+            {
+                productsList.map(product => (
+                    <ProductItem key={product.id} product={product} />
+                ))
+            }
         </Container>
     )
 }

@@ -2,7 +2,6 @@ import Document from 'next/document'
 import { ServerStyleSheet, createGlobalStyle } from 'styled-components'
 import styled from 'styled-components'
 import { color } from '../util/variables'
-import { ThemeProvider } from 'styled-components'
 
 
 const GlobalStyle = createGlobalStyle`
@@ -21,19 +20,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
-const theme = {
-  colors: {
-    headerTextColor: 'rgba(14, 49, 15, 0.49)',
-    footer: "#444",
-    primary: "#11bbaa",
-    darkGreen: "rgba(6, 131, 101, 0.63)",
-    grey: "#C9D2CA"
-  },
-  breakPoints: {
-    mobile: "600px",
-    tablet: "991px"
-  }
-}
+
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -45,10 +32,8 @@ export default class MyDocument extends Document {
         originalRenderPage({
           enhanceApp: App => props => sheet.collectStyles(
             <>
-              <ThemeProvider theme={theme}>
-                <GlobalStyle />
-                <App {...props} />
-              </ThemeProvider >
+              <GlobalStyle />
+              <App {...props} />
 
             </>
           )

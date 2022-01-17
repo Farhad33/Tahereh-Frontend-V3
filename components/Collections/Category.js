@@ -37,22 +37,23 @@ export default function Category({ collection: { id = null, name = '', photo_alt
 
     return (
         // <Link href={`collections/${id}/products/${productId}`}>
-        <Link href={`collections/${id}/products`}>
-            <Container>
+        <Container>
+            <Link href={`collections/${id}/products`}>
                 <ImageContainer>
                     <Image src={baseURL + '/public/' + photo} alt={photo_alt} />
                 </ImageContainer>
-                {mode === 'edit' ? <>
-                    <ChooseFile type="file" onChange={(e) => setSelectedFile(e.target.files[0])} />
-                    <input value={photoAlt} onChange={(e) => setPhotoAlt(e.target.value)} />
-                    <EditButton onClick={handleEditButton}>
-                        {mode === 'edit' ? 'Submit' : 'Edit'}
-                    </EditButton>
-                </> : ''}
-                <Line />
-                {mode === 'edit' ? <input value={title} onChange={(e) => setTitle(e.target.value)} /> : <Title>{title}</Title>}
-            </Container>
-        </Link>
+            </Link>
+
+            {mode === 'edit' ? <>
+                <ChooseFile type="file" onChange={(e) => setSelectedFile(e.target.files[0])} />
+                <input value={photoAlt} onChange={(e) => setPhotoAlt(e.target.value)} />
+                <EditButton onClick={handleEditButton}>
+                    {mode === 'edit' ? 'Submit' : 'Edit'}
+                </EditButton>
+            </> : ''}
+            <Line />
+            {mode === 'edit' ? <input value={title} onChange={(e) => setTitle(e.target.value)} /> : <Title>{title}</Title>}
+        </Container>
     )
 }
 
@@ -71,7 +72,6 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     margin: 4%;
-    cursor: pointer;
 `
 const ImageContainer = styled.div`
     display: flex;
@@ -80,6 +80,7 @@ const ImageContainer = styled.div`
     min-width: 300px;
     height: 550px;
     border: 1px solid ${color.secondary};
+    cursor: pointer;
 `
 
 const Image = styled.img`
