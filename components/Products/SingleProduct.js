@@ -5,12 +5,12 @@ import ProductItem from './ProductItem'
 import { useRouter } from 'next/router'
 
 
-export default function ProductsList() {
+export default function SignleProduct() {
     const router = useRouter()
     const props = router.query;
+    // console.log('products is => ', props)
     const [productsList, setProductsList] = useState([])
-    console.log('products is => ', props)
-    console.log("🚀 ~ file: ProductsList.js ~ line 13 ~ ProductsList ~ setProductsList", productsList);
+    // console.log("🚀 ~ file: ProductsList.js ~ line 13 ~ ProductsList ~ setProductsList", productsList);
     const [mode, setMode] = useState('read')
 
     useEffect(() => {
@@ -26,12 +26,9 @@ export default function ProductsList() {
     return (
         <Container>
             {
-                productsList ? (
-                    productsList && productsList.map(product => (
-                        <ProductItem key={product.id} product={product} collection_id={props.collection_id} />
-                    ))) : (
-                    <p>Loading...</p>
-                )
+                productsList.map(product => (
+                    <ProductItem key={product.id} product={product} />
+                ))
             }
         </Container>
     )

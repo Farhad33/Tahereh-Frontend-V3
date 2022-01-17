@@ -6,5 +6,5 @@ export default function product() {
       const router = useRouter()
       const props = router.query;
       console.log('product is => ', props)
-      return ''
+      return 'اینجا تکی محصول است'
 }

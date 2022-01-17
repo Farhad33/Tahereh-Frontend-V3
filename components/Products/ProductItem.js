@@ -2,9 +2,12 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import api, { baseURL } from '../../util/api'
 import { color } from '../../util/variables'
+import Link from 'next/link'
 
 
-export default function Productitem({ product: { id = null, name = '', photo_alt = '', photo_src = '' } }) {
+export default function Productitem({ product: { id = null, name = '', photo_alt = '', photo_src = '' }, collection_id }) {
+    // console.log("🚀 ~ file: ProductItem.js ~ line 9 ~ Productitem ~ product", product)
+    // console.log("🚀 ~ file: ProductItem.js ~ line 9 ~ Productitem ~ collection_id", collection_id)
     const [mode, setMode] = useState('read')
     const [title, setTitle] = useState(name)
     const [selectedFile, setSelectedFile] = useState(null)
@@ -37,10 +40,13 @@ export default function Productitem({ product: { id = null, name = '', photo_alt
 
     return (
         <Container>
-            <ImageContainer>
-                <Image src={baseURL + '/public/' + photo} alt={photo_alt} />
-            </ImageContainer>
+            <Link href={`/collections/${collection_id}/products/${id}`}>
+                <ImageContainer>
+                    <Image src={baseURL + '/public/' + photo} alt={photo_alt} />
+                </ImageContainer>
+            </Link>
             {mode === 'edit' ? <>
+                {mode === 'edit' ? <input value={title} onChange={(e) => setTitle(e.target.value)} /> : <Title>{title}</Title>}
                 <ChooseFile type="file" onChange={(e) => setSelectedFile(e.target.files[0])} />
                 <input value={photoAlt} onChange={(e) => setPhotoAlt(e.target.value)} />
                 <EditButton onClick={handleEditButton}>
@@ -48,7 +54,6 @@ export default function Productitem({ product: { id = null, name = '', photo_alt
                 </EditButton>
             </> : ''}
             <Line />
-            {mode === 'edit' ? <input value={title} onChange={(e) => setTitle(e.target.value)} /> : <Title>{title}</Title>}
         </Container>
     )
 }
@@ -72,15 +77,17 @@ const Container = styled.div`
 const ImageContainer = styled.div`
     display: flex;
     justify-content: center;
-    width: 32vw;
+    width: 20vw;
     min-width: 300px;
-    height: 550px;
+    height: 480px;
     border: 1px solid ${color.secondary};
+    cursor: pointer;
 `
 
 const Image = styled.img`
     max-width:100%;
     max-height:100%;
+    object-fit: cover;
 `
 
 
