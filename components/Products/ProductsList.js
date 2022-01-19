@@ -9,17 +9,16 @@ export default function ProductsList() {
     const router = useRouter()
     const props = router.query;
     const [productsList, setProductsList] = useState([])
-    console.log('products is => ', props)
-    console.log("🚀 ~ file: ProductsList.js ~ line 13 ~ ProductsList ~ setProductsList", productsList);
     const [mode, setMode] = useState('read')
 
     useEffect(() => {
-        api.get(`collections/${props.collection_id}`)
-            .then(result => {
-                // console.log("🚀 ~ file: ProductsList.js ~ line 19 ~ useEffect ~ result", result)
-                setProductsList(result.data)
-            })
-    }, [])
+        if(props.collection_id) {
+            api.get(`collections/${props.collection_id}`)
+                .then(result => {
+                    setProductsList(result.data)
+                })
+        }
+    }, [props.collection_id])
 
 
 
