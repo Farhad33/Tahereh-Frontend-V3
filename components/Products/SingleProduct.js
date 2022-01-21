@@ -16,18 +16,18 @@ import {
 export default function SignleProduct() {
     const router = useRouter()
     const props = router.query;
-    // console.log('products is => ', props)
     const [product, setProduct] = useState(null)
-    // console.log("🚀 ~ file: ProductsList.js ~ line 13 ~ ProductsList ~ setProductsList", productsList);
     const [mode, setMode] = useState('read')
 
     useEffect(() => {
-        api.get(`/products/${props.product_id}`)
-            .then(result => {
-                console.table(result.data)
-                setProduct(result.data)
-            })
-    }, [])
+        if (props.product_id) {
+            api.get(`/products/${props.product_id}`)
+                .then(result => {
+                    console.table(result.data)
+                    setProduct(result.data)
+                })
+        }
+    }, [props.product_id])
 
 
 

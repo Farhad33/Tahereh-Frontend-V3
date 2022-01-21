@@ -12,15 +12,13 @@ export default function ProductsList() {
     const [mode, setMode] = useState('read')
 
     useEffect(() => {
-        if(props.collection_id) {
+        if (props.collection_id) {
             api.get(`collections/${props.collection_id}`)
                 .then(result => {
                     setProductsList(result.data)
                 })
         }
     }, [props.collection_id])
-
-
 
     return (
         <Container>

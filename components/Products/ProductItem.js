@@ -6,8 +6,6 @@ import Link from 'next/link'
 
 
 export default function Productitem({ product: { id = null, name = '', photo_alt = '', photo_src = '' }, collection_id }) {
-    // console.log("🚀 ~ file: ProductItem.js ~ line 9 ~ Productitem ~ product", product)
-    // console.log("🚀 ~ file: ProductItem.js ~ line 9 ~ Productitem ~ collection_id", collection_id)
     const [mode, setMode] = useState('read')
     const [title, setTitle] = useState(name)
     const [selectedFile, setSelectedFile] = useState(null)
