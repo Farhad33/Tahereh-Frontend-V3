@@ -69,7 +69,7 @@ export const Follow = styled.p`
     font-size: 18px;
     font-weight: 400;
     opacity: 0.8;
-    letter-spacing: 7px;
+    letter-spacing: 10px;
     text-align: center;
 `
 
@@ -101,6 +101,11 @@ export const Line = styled.div`
 `
 
 
+export const Header = styled.div`
+    display: flex;
+    align-items: baseline;
+`
+
 export const Title = styled.p`
     font-family: 'Abril Fatface';
     font-size: 4vw;
@@ -115,4 +120,27 @@ export const Title = styled.p`
     @media only screen and (max-width: 600px) {
         font-size: 6.6vw;
     }
+`
+
+export const GoToBackPage = styled.span`
+  width: 0px;
+  height: 0px;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-left: 25px solid ${color.primary};
+  margin: 0 24px;
+  ${({ left }) => left && 'transform: rotate(180deg);'}
+  :hover { 
+    border-left: 25px solid ${color.hoverColor};
+  }
+`
+
+export const Chevron = styled.span`
+padding: 13px;
+  width: 30px;
+  height: 30px;
+  border-top: 1.6px solid ${color.darkGreen};
+  border-left: 1.6px solid ${color.darkGreen};
+  ${({ navigateTo }) => navigateTo === "previous" ? 'transform: rotate(-45deg);' : 'transform: rotate(135deg);'}
+  cursor: pointer;
 `
