@@ -23,7 +23,7 @@ export default function SignleProduct() {
     const [product, setProduct] = useState(null)
     const [mode, setMode] = useState('read');
     const [productsId, setProductsId] = useState([]);
-    console.log("🚀 ~ file: SingleProduct.js ~ line 26 ~ SignleProduct ~ setProductsId", setProductsId)
+    console.log("🚀 ~ file: SingleProduct.js ~ line 26 ~ SignleProduct ~ setProductsId", productsId)
 
     useEffect(() => {
         if (props.product_id && props.collection_id) {
@@ -34,17 +34,23 @@ export default function SignleProduct() {
             api.get(`/products_id_collection/${props.collection_id}`)
                 .then(result => {
                     setProductsId(result.data);
-                    console.log("🚀 ~ file: SingleProduct.js ~ line 37 ~ useEffect ~ result.data", result.data)
                 })
         }
     }, [props.product_id])
+    // }, [props.product_id])
 
-    const navigateProduct = ({ navigateTo }) => {
-        if (navigateTo === "next") {
 
-        } else if (navigateTo === "previous") {
-
+    const findProductPosition = (num) => {
+        const result = productsId.findIndex((item) => {
+            return item.id === product.id;
+        });
+        if (num === -1 && result === 0) {
+            return 0;
         }
+        if (num === 1 && result === productsId.length - 1) {
+            return productsId.length - 1;
+        }
+        return (result + num)
     }
 
     return (
@@ -69,9 +75,26 @@ export default function SignleProduct() {
                                 <Description>{product.description}</Description>
                             </Left>
                             <Right>
-                                <Chevron navigateTo="previous" onClick={navigateProduct}></Chevron>
+                                {
+                                    productsId && productsId[0] && (
+                                        // console.log('hi', (findProductPosition() - 1))
+                                        <NewLink show={product.id != productsId[0].id}>
+                                            <Link href={`/collections/${props.collection_id}/products/${productsId[findProductPosition(-1)].id}`}>
+                                                <Chevron navigateTo="previous"></Chevron>
+                                            </Link>
+                                        </NewLink>
+                                    )
+                                }
                                 <img src={baseURL + '/public/' + product.photo_src} alt={product.photo_alt}></img>
-                                <Chevron navigateTo="next" onClick={navigateProduct}></Chevron>
+                                {
+                                    productsId && productsId[productsId.length - 1] && (
+                                        <NewLink show={product.id != productsId[productsId.length - 1].id}>
+                                            <Link href={`/collections/${props.collection_id}/products/${productsId[findProductPosition(1)].id}`}>
+                                                <Chevron navigateTo="next" ></Chevron>
+                                            </Link>
+                                        </NewLink>
+                                    )
+                                }
                             </Right>
                         </Inner>
                     </>
@@ -114,4 +137,9 @@ const Right = styled.div`
         max-width: 100%;
         border: 1px solid ${({ theme: { colors } }) => colors.grey}
     }
+`
+
+const NewLink = styled.div`
+    visibility: ${({ show }) => show ? 'visible' : 'hidden'};
+
 `
