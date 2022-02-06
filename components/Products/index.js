@@ -10,7 +10,7 @@ import {
     Diamond,
     Line,
     Title
-} from '../../pages/_document'
+} from '../shared'
 
 export default function Products() {
 

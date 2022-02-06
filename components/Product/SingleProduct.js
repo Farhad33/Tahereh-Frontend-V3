@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
-import ProductItem from './ProductItem'
+import ProductItem from '../Products/ProductItem'
 import { useRouter } from 'next/router'
 import api, { baseURL } from '../../util/api'
 
@@ -15,15 +15,14 @@ import {
     Title,
     Chevron,
     GoToBackPage
-} from '../../pages/_document'
+} from '../shared'
 
 export default function SignleProduct() {
     const router = useRouter()
     const props = router.query;
     const [product, setProduct] = useState(null)
     const [mode, setMode] = useState('read');
-    const [productsId, setProductsId] = useState([]);
-    console.log("🚀 ~ file: SingleProduct.js ~ line 26 ~ SignleProduct ~ setProductsId", productsId)
+    const [productsIds, setProductsIds] = useState([]);
 
     useEffect(() => {
         if (props.product_id && props.collection_id) {
@@ -31,24 +30,22 @@ export default function SignleProduct() {
                 .then(result => {
                     setProduct(result.data)
                 });
-            api.get(`/products_id_collection/${props.collection_id}`)
+            api.get(`/collections/${props.collection_id}`)
                 .then(result => {
-                    setProductsId(result.data);
+                    setProductsIds(result.data);
                 })
         }
     }, [props.product_id])
-    // }, [props.product_id])
-
 
     const findProductPosition = (num) => {
-        const result = productsId.findIndex((item) => {
+        const result = productsIds.findIndex((item) => {
             return item.id === product.id;
         });
         if (num === -1 && result === 0) {
             return 0;
         }
-        if (num === 1 && result === productsId.length - 1) {
-            return productsId.length - 1;
+        if (num === 1 && result === productsIds.length - 1) {
+            return productsIds.length - 1;
         }
         return (result + num)
     }
@@ -62,7 +59,7 @@ export default function SignleProduct() {
                             <Left>
                                 <Header>
                                     <Link href={`/collections/${props.collection_id}/products/`}>
-                                        <GoToBackPage next={true} />
+                                        <GoToBackPage direction='left' />
                                     </Link>
                                     <Title>{product.name}</Title>
                                 </Header>
@@ -76,10 +73,9 @@ export default function SignleProduct() {
                             </Left>
                             <Right>
                                 {
-                                    productsId && productsId[0] && (
-                                        // console.log('hi', (findProductPosition() - 1))
-                                        <NewLink show={product.id != productsId[0].id}>
-                                            <Link href={`/collections/${props.collection_id}/products/${productsId[findProductPosition(-1)].id}`}>
+                                    productsIds && productsIds[0] && (
+                                        <NewLink show={product.id != productsIds[0].id}>
+                                            <Link href={`/collections/${props.collection_id}/products/${productsIds[findProductPosition(-1)].id}`}>
                                                 <Chevron navigateTo="previous"></Chevron>
                                             </Link>
                                         </NewLink>
@@ -87,9 +83,9 @@ export default function SignleProduct() {
                                 }
                                 <img src={baseURL + '/public/' + product.photo_src} alt={product.photo_alt}></img>
                                 {
-                                    productsId && productsId[productsId.length - 1] && (
-                                        <NewLink show={product.id != productsId[productsId.length - 1].id}>
-                                            <Link href={`/collections/${props.collection_id}/products/${productsId[findProductPosition(1)].id}`}>
+                                    productsIds && productsIds[productsIds.length - 1] && (
+                                        <NewLink show={product.id != productsIds[productsIds.length - 1].id}>
+                                            <Link href={`/collections/${props.collection_id}/products/${productsIds[findProductPosition(1)].id}`}>
                                                 <Chevron navigateTo="next" ></Chevron>
                                             </Link>
                                         </NewLink>

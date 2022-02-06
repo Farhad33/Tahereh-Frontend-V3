@@ -7,11 +7,12 @@ import {
     Diamond,
     Line,
     Title
-} from '../../pages/_document'
+} from '../shared'
 export default function Collections() {
 
 
     return (
+        // <p>salam</p>
         <Container>
             <Title>AVIOR DESIGN</Title>
             <LineContainer>
