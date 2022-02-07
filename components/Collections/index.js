@@ -14,7 +14,7 @@ export default function Collections() {
     return (
         // <p>salam</p>
         <Container>
-            <Title>AVIOR DESIGN</Title>
+            <Title>AVIOR COLLECTIONS</Title>
             <LineContainer>
                 <Line />
                 <Diamond />

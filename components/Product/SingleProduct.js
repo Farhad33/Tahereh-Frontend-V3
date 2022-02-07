@@ -14,7 +14,8 @@ import {
     Header,
     Title,
     Chevron,
-    GoToBackPage
+    GoToBackPage,
+    NewLink
 } from '../shared'
 
 export default function SignleProduct() {
@@ -137,5 +138,4 @@ const Right = styled.div`
 
 const NewLink = styled.div`
     visibility: ${({ show }) => show ? 'visible' : 'hidden'};
-
 `
