@@ -24,10 +24,10 @@ const Container = styled.div`
     ${({ direction }) =>
         direction === 'bottom-left' ?
             `bottom: 0;
-            left: 50px;`
+            left: 2%;`
             :
             `top: 0;
-            right: 50px;
+            right: 2%;
             `
     }
     @media only screen and (max-width: 600px) {

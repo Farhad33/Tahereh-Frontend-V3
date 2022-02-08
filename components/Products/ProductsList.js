@@ -14,7 +14,7 @@ export default function ProductsList() {
 
     useEffect(() => {
         if (props.collection_id) {
-            api.get(`collections/${props.collection_id}`)
+            api.get(`collections/${props.collection_id}/products`)
                 .then(result => {
                     setProductsList(result.data)
                 })

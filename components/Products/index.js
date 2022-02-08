@@ -19,10 +19,8 @@ export default function Products() {
     const router = useRouter()
     const props = router.query;
     const [currentCollection, setCurrentCollection] = useState(null)
-    console.log("🚀 ~ file: index.js ~ line 22 ~ Products ~ currentCollection", currentCollection)
     // const [mode, setMode] = useState('read');
     const [collectionsIds, setCollectionsIds] = useState([]);
-    console.log("🚀 ~ file: index.js ~ line 25 ~ Products ~ collectionsIds", collectionsIds)
 
     useEffect(() => {
         if (props.collection_id) {
@@ -35,11 +33,9 @@ export default function Products() {
 
     useEffect(() => {
         if (collectionsIds.length != 0) {
-            console.log("🚀 ~ file: index.js ~ line 45 ~ Products ~ collectionsIds", collectionsIds)
             const currentColletion = collectionsIds.filter(item => {
                 return item.id == parseInt(props.collection_id)
             })
-            console.log("🚀 ~ file: index.js ~ line 43 ~ useEffect ~ currentColletion", currentColletion)
             if (currentColletion[0]) {
                 setCurrentCollection(currentColletion[0]);
             }

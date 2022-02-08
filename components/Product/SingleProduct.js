@@ -15,7 +15,6 @@ import {
     Title,
     Chevron,
     GoToBackPage,
-    NewLink
 } from '../shared'
 
 export default function SignleProduct() {
@@ -24,6 +23,7 @@ export default function SignleProduct() {
     const [product, setProduct] = useState(null)
     const [mode, setMode] = useState('read');
     const [productsIds, setProductsIds] = useState([]);
+    const [collection, setCollection] = useState([]);
 
     useEffect(() => {
         if (props.product_id && props.collection_id) {
@@ -31,9 +31,13 @@ export default function SignleProduct() {
                 .then(result => {
                     setProduct(result.data)
                 });
-            api.get(`/collections/${props.collection_id}`)
+            api.get(`/collections/${props.collection_id}/products`)
                 .then(result => {
                     setProductsIds(result.data);
+                })
+            api.get(`/collections/${props.collection_id}`)
+                .then(result => {
+                    setCollection(result.data);
                 })
         }
     }, [props.product_id])
@@ -62,7 +66,7 @@ export default function SignleProduct() {
                                     <Link href={`/collections/${props.collection_id}/products/`}>
                                         <GoToBackPage direction='left' />
                                     </Link>
-                                    <Title>{product.name}</Title>
+                                    <Title>{collection && collection.name}</Title>
                                 </Header>
                                 <LineContainer>
                                     <Line />
@@ -71,6 +75,7 @@ export default function SignleProduct() {
                                 </LineContainer>
                                 <Follow>AVIOR DESIGN</Follow>
                                 <Description>{product.description}</Description>
+                                <ProductName>Name : {product.name}</ProductName>
                             </Left>
                             <Right>
                                 {
@@ -109,15 +114,23 @@ const Inner = styled.div`
 
 const Left = styled.div`
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
     @media (min-width: ${({ theme: { breakPoints } }) => breakPoints.tablet}) {
         max-width: 40%;
     }
 
 `
 
-const Description = styled.div`
+const Description = styled.p`
     margin: 26px 0;
-    text-align: center;
+    line-height: 24px;
+    font-weight: 400;
+    font-size: 18px;
+    color: ${({ theme: { colors } }) => colors.secondary};
+    @media (min-width: ${({ theme: { breakPoints } }) => breakPoints.tablet}) {
+        text-align: justify;
+    }
 `
 
 
@@ -138,4 +151,11 @@ const Right = styled.div`
 
 const NewLink = styled.div`
     visibility: ${({ show }) => show ? 'visible' : 'hidden'};
+`
+const ProductName = styled.h1`
+    color: ${({ theme: { colors } }) => colors.midGrey};
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: auto;
+    margin-bottom: 10px;
 `
