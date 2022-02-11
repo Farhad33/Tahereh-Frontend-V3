@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import api from '../../util/api'
 import Category from './Category'
+import { color } from '../../util/variables'
 
 
 export default function Categories() {
@@ -19,6 +20,10 @@ export default function Categories() {
 
     return (
         <Container>
+            {/* <Category key={0} collection={null} /> */}
+            <ImageContainer>
+                <Image src="" />
+            </ImageContainer>
             {collections.map(collection => (
                 <Category key={collection.id} collection={collection} />
             ))}
@@ -32,4 +37,20 @@ const Container = styled.div`
     flex-flow: wrap;
     justify-content: center;
     align-items: center;
+`
+const ImageContainer = styled.div`
+position:relative;
+    display: flex;
+    justify-content: center;
+    width: 32vw;
+    min-width: 300px;
+    height: 550px;
+    border: 1px solid ${color.secondary};
+    cursor: pointer;
+`
+
+const Image = styled.img`
+    max-width:100%;
+    max-height:100%;
+    object-fit: cover;
 `

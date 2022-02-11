@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import api, { baseURL } from '../../util/api'
 import { color } from '../../util/variables'
 import Link from 'next/link'
+import { ModifyButton } from '../shared/ModifyButton'
+
 
 export default function Category({ collection: { id = null, name = '', photo_alt = '', photo_src = '' } }) {
     const [mode, setMode] = useState('read')
@@ -41,6 +43,8 @@ export default function Category({ collection: { id = null, name = '', photo_alt
             <Link href={`collections/${id}/products`}>
                 <ImageContainer>
                     <Image src={baseURL + '/public/' + photo} alt={photo_alt} />
+                    <ModifyButton mode="remove"></ModifyButton>
+                    <ModifyButton mode="edit"></ModifyButton>
                 </ImageContainer>
             </Link>
 
@@ -74,6 +78,7 @@ const Container = styled.div`
     margin: 4%;
 `
 const ImageContainer = styled.div`
+position:relative;
     display: flex;
     justify-content: center;
     width: 32vw;
