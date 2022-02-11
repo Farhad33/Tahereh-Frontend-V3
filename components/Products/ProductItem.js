@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import api, { baseURL } from '../../util/api'
 import { color } from '../../util/variables'
 import Link from 'next/link'
+import { ModifyButton } from '../shared/ModifyButton'
 
 
 export default function Productitem({ product: { id = null, name = '', photo_alt = '', photo_src = '' }, collection_id }) {
@@ -37,22 +38,37 @@ export default function Productitem({ product: { id = null, name = '', photo_alt
     }
 
     return (
-        <Container>
-            <Link href={`/collections/${collection_id}/products/${id}`}>
-                <ImageContainer>
-                    <Image src={baseURL + '/public/' + photo} alt={photo_alt} />
-                </ImageContainer>
-            </Link>
-            {mode === 'edit' ? <>
-                {mode === 'edit' ? <input value={title} onChange={(e) => setTitle(e.target.value)} /> : <Title>{title}</Title>}
-                <ChooseFile type="file" onChange={(e) => setSelectedFile(e.target.files[0])} />
-                <input value={photoAlt} onChange={(e) => setPhotoAlt(e.target.value)} />
-                <EditButton onClick={handleEditButton}>
-                    {mode === 'edit' ? 'Submit' : 'Edit'}
-                </EditButton>
-            </> : ''}
-            <Line />
-        </Container>
+        <>
+            {
+                id ? (
+                    <Container>
+                        <Link href={`/collections/${collection_id}/products/${id}`}>
+                            <ImageContainer>
+                                <Image src={baseURL + '/public/' + photo} alt={photo_alt} />
+                                {
+                                    mode === 'edit' && (
+                                        <>
+                                            <ModifyButton mode="remove"></ModifyButton>
+                                            <ModifyButton mode="edit"></ModifyButton>
+                                        </>
+                                    )
+                                }
+                            </ImageContainer>
+                        </Link>
+                        {/* <Line /> */}
+                    </Container>
+                ) : (
+                    mode === 'edit' && (
+                        <Container>
+                            <ImageContainer>
+                                <Image add={true} src="/img/add.png" alt="add" />
+                            </ImageContainer>
+                        </Container>
+                    )
+                )
+            }
+
+        </>
     )
 }
 
@@ -73,6 +89,7 @@ const Container = styled.div`
     margin: 4%;
     `
 const ImageContainer = styled.div`
+    position: relative;
     display: flex;
     justify-content: center;
     width: 20vw;
@@ -86,17 +103,18 @@ const Image = styled.img`
     max-width:100%;
     max-height:100%;
     object-fit: cover;
+    object-fit: ${({ add }) => add ? " none" : "cover"};
 `
 
 
-const Line = styled.div`
-    width: 100%;
-    height: 30px;
-    margin: 50px 0 30px 0;
-    background: rgb(237,237,237);
-    background: linear-gradient(180deg, rgba(237,237,237,0.2) 0%, rgba(255,255,255,1) 48%);
-    border-radius: 1px;
-`
+// const Line = styled.div`
+//     width: 100%;
+//     height: 30px;
+//     margin: 50px 0 30px 0;
+//     background: rgb(237,237,237);
+//     background: linear-gradient(180deg, rgba(237,237,237,0.2) 0%, rgba(255,255,255,1) 48%);
+//     border-radius: 1px;
+// `
 
 const Title = styled.p`
     width: 100%;

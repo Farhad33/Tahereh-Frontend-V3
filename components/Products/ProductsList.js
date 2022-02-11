@@ -25,9 +25,15 @@ export default function ProductsList() {
         <Container>
             {
                 productsList ? (
-                    productsList && productsList.map(product => (
-                        <ProductItem key={product.id} product={product} collection_id={props.collection_id} />
-                    ))) : (
+                    <>
+                        <ProductItem product="" collection_id="" />
+                        {
+                            productsList && productsList.map(product => (
+                                <ProductItem key={product.id} product={product} collection_id={props.collection_id} />
+                            ))
+                        }
+                    </>
+                ) : (
                     <p>Loading...</p>
                 )
             }

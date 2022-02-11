@@ -15,7 +15,8 @@ export default function MyApp({ Component, pageProps }) {
     },
     breakPoints: {
       mobile: "600px",
-      tablet: "991px"
+      tablet: "991px",
+      desktop: "1494px"
     }
   }
   return (

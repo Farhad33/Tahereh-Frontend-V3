@@ -5,8 +5,8 @@ export const ModifyButton = styled.div`
     position: absolute;
     z-index: 10;
     bottom: 1%;
-    width: 23px;
-    height: 23px;
+    width: 26px;
+    height: 26px;
     background: url(${(({ mode }) => mode === "remove" ? "/img/remove.png" : "/img/edit.png")});
     right: ${(({ mode }) => mode === "remove" ? "50px" : "14px")};
     background-color: white;
