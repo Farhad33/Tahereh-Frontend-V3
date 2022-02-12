@@ -1,6 +1,7 @@
 import Document from 'next/document'
 import { ServerStyleSheet, createGlobalStyle } from 'styled-components'
 
+
 const GlobalStyle = createGlobalStyle`
   html {
     scroll-behavior: smooth;
@@ -14,14 +15,17 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    transition: 0.11s;
   }
 `
 
+
+
 export default class MyDocument extends Document {
-  static async getInitialProps (ctx) {
+  static async getInitialProps(ctx) {
     const sheet = new ServerStyleSheet()
     const originalRenderPage = ctx.renderPage
-    
+
     try {
       ctx.renderPage = () =>
         originalRenderPage({
@@ -48,3 +52,5 @@ export default class MyDocument extends Document {
     }
   }
 }
+
+

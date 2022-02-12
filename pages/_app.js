@@ -8,11 +8,15 @@ export default function MyApp({ Component, pageProps }) {
       footer: "#444",
       primary: "#11bbaa",
       darkGreen: "rgba(6, 131, 101, 0.63)",
-      grey: "#C9D2CA"
+      grey: "#C9D2CA",
+      midGrey: '#8a9b89',
+      secondary: '#828282',
+      hoverColor: '#FAEA8A'
     },
     breakPoints: {
       mobile: "600px",
-      tablet: "991px"
+      tablet: "991px",
+      desktop: "1494px"
     }
   }
   return (
@@ -20,6 +24,6 @@ export default function MyApp({ Component, pageProps }) {
       <Layout>
         <Component {...pageProps} />
       </Layout>
-    </ThemeProvider>
+    </ThemeProvider >
   )
 }

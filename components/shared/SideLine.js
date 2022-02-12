@@ -6,9 +6,9 @@ import { color } from '../../util/variables'
 export default function SideLine({ direction }) {
     return (
         <Container direction={direction}>
-            { direction === 'top-right' ? <Line /> : ''}
+            {direction === 'top-right' ? <Line /> : ''}
             <Content direction={direction}>Follow your dreams</Content>
-            { direction === 'bottom-left' ? <Line /> : '' }
+            {direction === 'bottom-left' ? <Line /> : ''}
         </Container>
     )
 }
@@ -20,14 +20,14 @@ const Container = styled.div`
     text-align: left;
     height: 600px;
     width: 50px;
-    position: absolute;
-    ${({direction}) => 
+    position: fixed;
+    ${({ direction }) =>
         direction === 'bottom-left' ?
             `bottom: 0;
-            left: 50px;`
-        :
+            left: 2%;`
+            :
             `top: 0;
-            right: 50px;
+            right: 2%;
             `
     }
     @media only screen and (max-width: 600px) {
@@ -44,9 +44,9 @@ const Line = styled.div`
 const Content = styled.p`
     color: ${color.secondary};
     writing-mode: vertical-lr;
-    ${({direction}) => direction === 'bottom-left' ? `transform: rotate(180deg);` : ''}
-    font-size: 20px;
+    ${({ direction }) => direction === 'bottom-left' ? `transform: rotate(180deg);` : ''}
+    font-size: 18.8px;
     font-weight: 300;
     letter-spacing: 7px; 
-    ${({direction}) => direction === 'bottom-left' ? `margin-bottom: 10px;` : `margin-top: 10px;`}
+    ${({ direction }) => direction === 'bottom-left' ? `margin-bottom: 10px;` : `margin-top: 10px;`}
 `

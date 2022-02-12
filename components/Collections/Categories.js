@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import api from '../../util/api'
 import Category from './Category'
-
+import { color } from '../../util/variables'
+import { ImageContainer } from '../shared/ImageContainer'
 
 export default function Categories() {
     const [collections, setCollections] = useState([])
@@ -19,8 +20,15 @@ export default function Categories() {
 
     return (
         <Container>
-            {collections.map(product => (
-                <Category key={product.id} product={product} />
+            {/* <Category key={0} collection={null} /> */}
+            {/* <AddContainer>
+                <ImageContainer>
+                    <Image src="" />
+                </ImageContainer>
+            </AddContainer> */}
+            <Category collection="" />
+            {collections.map(collection => (
+                <Category key={collection.id} collection={collection} />
             ))}
         </Container>
     )
@@ -30,6 +38,18 @@ const Container = styled.div`
     display: flex;
     flex-direction: row;
     flex-flow: wrap;
-    justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    justify-content: space-evenly;
+`
+// const AddContainer = styled.div`
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     margin: 2%;
+//     width: 20%;
+// `
+const Image = styled.img`
+    max-width:100%;
+    max-height:100%;
+    object-fit: cover;
 `

@@ -29,7 +29,7 @@ const Maindiv = styled.div`
             font-weight: normal;
             font-size: 13vw;
             line-height: 225px;
-            color: ${({ theme: { colors } }) => colors.grey};
+            /* color: ${({ theme: { colors } }) => colors.grey}; */
             span:first-child {
                   margin-right: 14vw;
                   @media (max-width: ${({ theme: { breakPoints } }) => breakPoints.mobile}){

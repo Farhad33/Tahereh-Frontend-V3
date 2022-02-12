@@ -1,85 +1,108 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { useRouter } from 'next/router'
+import Link from 'next/link';
 import { color } from '../../util/variables'
-import Categories from './Products'
+import ProductsList from './ProductsList'
+import api from '../../util/api'
+import {
+    Container,
+    Follow,
+    LineContainer,
+    Diamond,
+    Line,
+    Title,
+    GoToBackPage
+} from '../shared'
 
 export default function Products() {
     const router = useRouter()
     const props = router.query;
-    console.log('products is => ', props)
+    const [currentCollection, setCurrentCollection] = useState(null)
+    // const [mode, setMode] = useState('read');
+    const [collectionsIds, setCollectionsIds] = useState([]);
+
+    useEffect(() => {
+        if (props.collection_id) {
+            api.get(`/collections`)
+                .then(result => {
+                    setCollectionsIds(result.data)
+                })
+        }
+    }, [props.collection_id])
+
+    useEffect(() => {
+        if (collectionsIds.length != 0) {
+            const currentColletion = collectionsIds.filter(item => {
+                return item.id == parseInt(props.collection_id)
+            })
+            if (currentColletion[0]) {
+                setCurrentCollection(currentColletion[0]);
+            }
+        }
+    }, [collectionsIds])
+
+    const findCollectionPosition = (num) => {
+        if (currentCollection) {
+            const result = collectionsIds.findIndex((item) => {
+                return item.id === currentCollection.id;
+            });
+            if (num === -1 && result === 0) {
+                return 0;
+            }
+            if (num === 1 && result === collectionsIds.length - 1) {
+                return collectionsIds.length - 1;
+            }
+            return (result + num)
+        }
+    }
+
+
+
+
 
     return (
         <Container>
-            <Title>AVIOR DESIGN</Title>
+            <Row>
+                {
+                    currentCollection && collectionsIds && collectionsIds[0] && (
+                        <NewLink show={currentCollection && currentCollection.id != collectionsIds[0].id}>
+                            <Link href={`/collections/${collectionsIds[findCollectionPosition(-1)].id}/products`}>
+                                <GoToBackPage direction='left' />
+                            </Link>
+                        </NewLink>
+                    )
+                }
+                <Title>{currentCollection && currentCollection.name}</Title>
+                {
+                    currentCollection && collectionsIds && collectionsIds[collectionsIds.length - 1] && (
+                        <NewLink show={currentCollection && currentCollection.id != collectionsIds[collectionsIds.length - 1].id}>
+                            <Link href={`/collections/${collectionsIds[findCollectionPosition(1)].id}/products`}>
+                                <GoToBackPage direction='right' />
+                            </Link>
+                        </NewLink>
+                    )
+                }
+            </Row>
             <LineContainer>
                 <Line />
                 <Diamond />
                 <Line />
             </LineContainer>
             <Follow>Follow your dreams</Follow>
-            <Categories />
+            <ProductsList />
         </Container>
     )
 }
 
-const Container = styled.div`
-    padding: 70px;
-    @media only screen and (max-width: 600px) {
-        padding: 40px;
-    }
-`
 
-const Follow = styled.p`
-    margin-top: 5px;
-    color: ${color.secondary};
-    font-size: 18px;
-    font-weight: 400;
-    opacity: 0.8;
-    letter-spacing: 7px;
-    text-align: center;
-`
-
-const LineContainer = styled.div`
+const NewLink = styled.div`
+    visibility: ${({ show }) => show ? 'visible' : 'hidden'};
     display: flex;
-    justify-content: center;
     align-items: center;
 `
 
-const Diamond = styled.div`
-    width: 20px;
-    height: 20px;
-    background-color: ${color.primary};
-    transform: rotate(45deg);
-    border-radius: 2px;
-    @media only screen and (max-width: 600px) {
-        width: 15px;
-        height: 15px;
-    }
-`
-
-const Line = styled.div`
-    width: 260px;
-    height: 1px;
-    background-color: ${color.primary};
-    @media only screen and (max-width: 600px) {
-        width: 110px;
-    }
-`
-
-
-const Title = styled.p`
-    font-family: 'Abril Fatface';
-    font-size: 4rem;
-    font-weight: bold;
-    color: #09321682;
-    opacity: 0.9;
-    white-space: nowrap;
-    text-align: center;
-    @media only screen and (max-width: 768px) {
-        font-size: 3.5rem;
-    }
-    @media only screen and (max-width: 600px) {
-        font-size: 2rem;
-    }
+const Row = styled.div`
+    display: flex;
+    justify-content: center;
 `
