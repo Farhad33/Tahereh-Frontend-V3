@@ -70,7 +70,7 @@ const Header = styled.header`
 
 const Logo = styled.img`
     width: 80px;
-    z-index: 30000000;
+    z-index: 3;
     cursor: pointer;
 `
 
