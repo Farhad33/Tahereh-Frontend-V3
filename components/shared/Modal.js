@@ -9,9 +9,9 @@ const GlobalStyle = createGlobalStyle`
 export function Modal({ showModal, setShowModal, children }) {
 
     return (
-        <MainContainer showModal={showModal} onClick={() => setShowModal(!showModal) } >
+        <MainContainer showModal={showModal} onClick={() => setShowModal(!showModal)} >
             <ContentContainer onClick={(e) => e.stopPropagation()}>
-                <span onClick={() => setShowModal(!showModal) }></span>
+                <span onClick={() => setShowModal(!showModal)}></span>
                 {showModal && <GlobalStyle />}
                 <Contentdiv>
                     {children}
@@ -22,7 +22,7 @@ export function Modal({ showModal, setShowModal, children }) {
 }
 
 const MainContainer = styled.div`
-    display: ${({showModal}) => showModal ? 'flex' : 'none'};
+    display: ${({ showModal }) => showModal ? 'flex' : 'none'};
     justify-content: center;
     align-items: center;
     position: fixed;
@@ -36,6 +36,8 @@ const MainContainer = styled.div`
 `
 const ContentContainer = styled.div`
     padding: 10px;
+    padding-top: 70px;
+
     width: 600px;
     /* height: 400px; */
     background-color: white;
@@ -57,3 +59,37 @@ const Contentdiv = styled.div`
     flex-direction: column;
     align-items: center;
  `
+
+
+export const P = styled.p`
+    padding-top: 30px;
+    font-size: 24px;
+    font-weight: 400; 
+    line-height: 28.13px;
+    font-style: normal;
+    font-weight: normal;
+    color: #828282;
+`
+export const Button = styled.button`
+    width: 85px;
+    height: 38px;
+    border: 1px solid #828282;
+    box-sizing: border-box;
+    border-radius: 50px;
+    /* margin-top: 54px; */
+    /* margin-bottom: 54px; */
+    /* margin: 54px 22px; */
+    :hover{
+        box-shadow: 0px 0px 4px 1px rgba(14, 49, 15, 0.5);
+    }
+`
+
+export const YesButtom = styled(Button)`
+    color: #FFFFFF;
+    background: #FFB546;
+`
+
+export const NoButtom = styled(Button)`
+    color: #000000;
+    background: #FFFFFF;
+`
