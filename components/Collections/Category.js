@@ -47,10 +47,10 @@ export default function Category({ collection: { id = null, name = '', photo_alt
     return (
         <>
             {
-                editModal && <EditModal showModal={editModal} setShowModal={setEditModal} />
+                <EditModal showModal={editModal} setShowModal={setEditModal} />
             }
             {
-                removeModal && <RemoveModal showModal={removeModal} setShowModal={setRemoveModal} />
+                <RemoveModal showModal={removeModal} setShowModal={setRemoveModal} />
             }
             {
                 id ? (
@@ -107,23 +107,12 @@ const Image = styled.img`
     max-width:100%;
     max-height:100%; 
     object-fit: ${({ add }) => add ? " none" : "cover"};
-}
 `
 
-
-// const Line = styled.div`
-// width: 100%;
-// height: 30px;
-// margin: 50px 0 30px 0;
-// background: rgb(237, 237, 237);
-// background: linear-gradient(180deg, rgba(237, 237, 237, 0.2) 0 %, rgba(255, 255, 255, 1) 48 %);
-// border-radius: 1px;
-// `
-
 const Title = styled.p`
-width: 100 %;
-text-align: center;
-color: ${color.primary};
-font-size: 1.5rem;
-margin: 14px 0 32px;
+    width: 100%;
+    text-align: center;
+    color: ${color.primary};
+    font-size: 1.5rem;
+    margin: 14px 0 32px;
 `

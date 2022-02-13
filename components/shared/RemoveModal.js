@@ -4,13 +4,12 @@ import { Modal } from './Modal'
 
 
 export function RemoveModal({ showModal, setShowModal }) {
-    // const [removeModal, setRemoveModal] = useState(false)
     return (
         <Modal showModal={showModal} setShowModal={setShowModal} >
             <P>Are you sure you want to delete it?</P>
             <div>
                 <YesButtom>Yes</YesButtom>
-                <NoButtom onClick={() => setShowModal(false)}>No</NoButtom>
+                <NoButtom onClick={() => setShowModal(!showModal)}>No</NoButtom>
             </div>
         </Modal >
     )
