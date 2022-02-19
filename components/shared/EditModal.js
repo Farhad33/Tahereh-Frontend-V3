@@ -1,29 +1,30 @@
-import React from 'react'
 import styled from 'styled-components'
 import { Modal, YesButtom, NoButtom } from './Modal'
-
+import { useState } from 'react';
+import { Input } from './index';
 
 export function EditModal({ showModal, setShowModal }) {
+    const [form, setForm] = useState({
+        title: "",
+        photo_alt: "",
+        upload_photo: "",
+        description: ""
+    })
+    console.log("🚀 ~ file: EditModal.js ~ line 8 ~ EditModal ~ form", form)
+    const BlurHnadler = (e) => {
+        setForm({ ...form, [e.target.name]: e.target.value });
+        // handleSubmit(value);
+    }
+
     return (
         <Modal button={true} showModal={showModal} setShowModal={setShowModal}>
             <div>
                 <Form onSubmit="">
-                    <div>
-                        <label htmlFor="name">Title</label>
-                        <input id="name" name="name" type="text" autoComplete="name" required />
-                    </div>
-                    <div>
-                        <label htmlFor="name">Photo Alt</label>
-                        <input id="name" name="name" type="text" autoComplete="name" required />
-                    </div>
-                    <div>
-                        <label htmlFor="name">Upload Photo</label>
-                        <input id="name" name="name" type="text" autoComplete="name" required />
-                    </div>
-                    <div>
-                        <label htmlFor="name">Description</label>
-                        <input id="name" name="name" type="text" autoComplete="name" required />
-                    </div>
+                    <Input onBlur={BlurHnadler} name="title" type="text" required >Title</Input>
+                    <Input onBlur={BlurHnadler} name="photo_alt" type="text" required >Photo Alt</Input>
+                    <Input onBlur={BlurHnadler} name="upload_photo" type="file" required >Photo Alt</Input>
+                    <Input onBlur={BlurHnadler} name="description" type="textarea" required >Description</Input>
+
                     {/* <button type="submit">Register</button> */}
                 </Form>
             </div>
@@ -34,35 +35,10 @@ export function EditModal({ showModal, setShowModal }) {
         </Modal>
     )
 }
-
 const Form = styled.form`
     display: flex;
     justify-content: center;
     flex-direction: column;
-    div {
-        margin: 10px 0px;
-        display: flex;
-        justify-content: right;
-        align-items: center;
-    }
-    label {
-        font-family: Roboto;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 18px;
-        line-height: 21px;
-        color: #828282;
-        padding-right: 10px;
-    }
-    input {
-        width: 318px;
-        height: 38px;
-        background: #FFFFFF;
-        border: 1px solid #828282;
-        box-sizing: border-box;
-        box-shadow: inset 1px 3px 5px #C4C4C4;
-        border-radius: 50px;
-    }
 `
 
 const Buttondiv = styled.div`
