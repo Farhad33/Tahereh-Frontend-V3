@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import api, { baseURL } from '../../util/api'
+import api, { photoBaseURL } from '../../util/api'
 import { ModifyButton, EditModal } from '../shared'
 
 const Aboutme = () => {
@@ -8,23 +8,27 @@ const Aboutme = () => {
       const [showModal, setShowModal] = useState(false)
       useEffect(() => {
             api.get("/aboutme")
-                  .then((result) => { setAboutDetail(result.data) })
-                  .catch((err) => { console.log(err) })
+            .then((result) => { setAboutDetail(result.data) })
+            .catch((err) => { console.log(err) })
       }, [])
 
       const onSubmit = (formData) => {
             api.put("/aboutme", formData)
+            .then((result) => {
+                  setAboutDetail(result.data.result) 
+                  setShowModal(!showModal)
+            })
+            .catch((err) => { console.log(err) })
       }
-
       return (
             <Maindiv>
                   <h1><span>TA</span><span>HEREH</span></h1>
                   <Discription>
-                        <img src={baseURL + '/public/' + aboutDetail.photo_src} alt={aboutDetail.photo_alt} />
+                  <img src={aboutDetail.photo_src && (photoBaseURL + aboutDetail.photo_src)} alt={aboutDetail.photo_alt} />
                         <p>{aboutDetail.description}</p>
                   </Discription>
                   <ModifyButton onClick={() => setShowModal(!showModal)} />
-                  <EditModal showModal={showModal} setShowModal={setShowModal} onSubmit={onSubmit} />
+                  <EditModal data={aboutDetail} showModal={showModal} setShowModal={setShowModal} onSubmit={onSubmit} />
             </Maindiv >
       )
 }
@@ -42,7 +46,6 @@ const Maindiv = styled.div`
             font-weight: normal;
             font-size: 13vw;
             line-height: 225px;
-            /* color: ${({ theme: { colors } }) => colors.grey}; */
             span:first-child {
                   margin-right: 14vw;
                   @media (max-width: ${({ theme: { breakPoints } }) => breakPoints.mobile}){

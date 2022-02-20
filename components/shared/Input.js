@@ -6,9 +6,9 @@ export const Input = ({ name, children, ...restOfProps }) => {
                   <label htmlFor={name}>{children}</label>
                   {
                         restOfProps.type === "textarea" ? (
-                              <textarea id={name} name={name} {...restOfProps} ></textarea>
+                              <textarea name={name} {...restOfProps} ></textarea>
                         ) :
-                              <input id={name} name={name} {...restOfProps} />
+                              <input name={name} {...restOfProps} />
                   }
             </InputDiv>
       )

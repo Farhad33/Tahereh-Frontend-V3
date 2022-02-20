@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-export const baseURL = 'http://localhost:4001'
+const baseURL = 'http://localhost:4001'
+export const photoBaseURL = baseURL + '/public/'
 
 const instance =  axios.create({
     baseURL,
