@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
+import api, { photoBaseURL } from '../../util/api'
 import { color } from '../../util/variables'
 
 export default function Menu() {
@@ -18,7 +19,7 @@ export default function Menu() {
         <>
             <Header>
                 <HamMenu onClick={handleClick}>
-                    <Image src={`./${hamMenu}.png`} />
+                    <Image src={`${photoBaseURL}assets/${hamMenu}.png`} />
                 </HamMenu>
                 <Items menu={hamMenu}>
                     <Link href='/'><Item>Home</Item></Link>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import api, { baseURL } from '../../util/api'
+import api, { photoBaseURL } from '../../util/api'
 import { color } from '../../util/variables'
 import Link from 'next/link'
 import { ModifyButton, EditModal, RemoveModal } from '../shared'
@@ -9,31 +9,25 @@ import { ModifyButton, EditModal, RemoveModal } from '../shared'
 export default function Productitem({ product: { id = null, name = '', photo_alt = '', photo_src = '' }, collection_id }) {
     const [mode, setMode] = useState('edit')
     const [title, setTitle] = useState(name)
-    const [selectedFile, setSelectedFile] = useState(null)
     const [photoAlt, setPhotoAlt] = useState(photo_alt)
     const [photo, setPhoto] = useState(photo_src)
     const [editModal, setEditModal] = useState(false)
     const [removeModal, setRemoveModal] = useState(false)
 
-
-    const onFileUpload = () => {
-        const formData = new FormData();
-        formData.append("photo", selectedFile)
-        formData.append("name", title)
-        formData.append("id", id)
-        formData.append("photo_alt", photoAlt)
-        api.put("/collections", formData)
-            .then(result => {
-                setTitle(result.data.result.name)
-                setPhotoAlt(result.data.result.photo_alt)
-                setPhoto(result.data.result.photo_src)
-            })
+    const onSubmit = (formData) => {
+        api.put(`/collections/${collection_id}/products/${id}`, formData)
+        .then((result) => {
+            setTitle(result.data.result.name)
+            setPhotoAlt(result.data.result.photo_alt)
+            setPhoto(result.data.result.photo_src)
+            setEditModal(!editModal)
+        })
+        .catch((err) => { console.log(err) })
     }
 
     const handleEditButton = () => {
         if (mode === 'edit') {
             setMode('read')
-            onFileUpload()
         } else {
             setMode('edit')
         }
@@ -48,9 +42,11 @@ export default function Productitem({ product: { id = null, name = '', photo_alt
         e.stopPropagation()
         setRemoveModal(!removeModal)
     }
+
+    const data = { name: title, photo_alt: photoAlt }
     return (
         <>
-            <EditModal showModal={editModal} setShowModal={setEditModal} />
+            <EditModal data={data} showModal={editModal} setShowModal={setEditModal} onSubmit={onSubmit} />
             <RemoveModal showModal={removeModal} setShowModal={setRemoveModal} />
             {
 
@@ -58,7 +54,7 @@ export default function Productitem({ product: { id = null, name = '', photo_alt
                     <Container>
                         <Link href={`/collections/${collection_id}/products/${id}`}>
                             <ImageContainer>
-                                <Image src={baseURL + '/public/' + photo} alt={photo_alt} />
+                                <Image src={photoBaseURL + photo} alt={photo_alt} />
                                 {
                                     mode === 'edit' && (
                                         <>

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import styled from 'styled-components'
 import ProductItem from '../Products/ProductItem'
 import { useRouter } from 'next/router'
-import api, { baseURL } from '../../util/api'
+import api, { photoBaseURL } from '../../util/api'
 
 import {
     Container,
@@ -37,6 +37,7 @@ export default function SignleProduct() {
                 })
             api.get(`/collections/${props.collection_id}`)
                 .then(result => {
+                    console.log('result => ', result)
                     setCollection(result.data);
                 })
         }
@@ -87,7 +88,7 @@ export default function SignleProduct() {
                                         </NewLink>
                                     )
                                 }
-                                <img src={baseURL + '/public/' + product.photo_src} alt={product.photo_alt}></img>
+                                <img src={photoBaseURL + product.photo_src} alt={product.photo_alt}></img>
                                 {
                                     productsIds && productsIds[productsIds.length - 1] && (
                                         <NewLink show={product.id != productsIds[productsIds.length - 1].id}>
