@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Modal, P, YesButtom, NoButtom } from './Modal'
+import { Modal, P } from './Modal'
+import { Button } from './index'
 
 
 export function RemoveModal({ showModal, setShowModal }) {
@@ -8,8 +9,8 @@ export function RemoveModal({ showModal, setShowModal }) {
         <Modal showModal={showModal} setShowModal={setShowModal} >
             <P>Are you sure you want to delete it?</P>
             <Buttondiv>
-                <YesButtom>Yes</YesButtom>
-                <NoButtom onClick={() => setShowModal(!showModal)}>No</NoButtom>
+                <Button color="orange">Yes</Button>
+                <Button color="white" onClick={() => setShowModal(!showModal)}>No</Button>
             </Buttondiv>
         </Modal >
     )

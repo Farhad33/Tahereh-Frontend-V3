@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import { Modal, YesButtom, NoButtom } from './Modal'
+import { Modal } from './Modal'
 import { useState } from 'react';
-import { Input } from './index';
+import { Input, Button } from './index';
 
 export function EditModal({ showModal, setShowModal, onSubmit }) {
     const [name, setName] = useState('')
@@ -27,8 +27,8 @@ export function EditModal({ showModal, setShowModal, onSubmit }) {
                 <Input onChange={(e) => setSelectedFile(e.target.files[0])} name="upload_photo" type="file" >Photo Alt</Input>
                 <Input onChange={(e) => setDescription(e.target.value)} name="description" type="textarea" >Description</Input>
                 <Buttondiv>
-                    <YesButtom onClick={handleSubmit}>Save</YesButtom>
-                    <NoButtom onClick={() => setShowModal(!showModal)}>Reset</NoButtom>
+                    <Button color="orange" onClick={handleSubmit}>Save</Button>
+                    <Button color="white" onClick={() => setShowModal(!showModal)}>Reset</Button>
                 </Buttondiv>
             </Form>
         </Modal>

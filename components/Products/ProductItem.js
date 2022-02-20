@@ -3,15 +3,18 @@ import styled from 'styled-components'
 import api, { baseURL } from '../../util/api'
 import { color } from '../../util/variables'
 import Link from 'next/link'
-import { ModifyButton } from '../shared/ModifyButton'
+import { ModifyButton, EditModal, RemoveModal } from '../shared'
 
 
 export default function Productitem({ product: { id = null, name = '', photo_alt = '', photo_src = '' }, collection_id }) {
-    const [mode, setMode] = useState('read')
+    const [mode, setMode] = useState('edit')
     const [title, setTitle] = useState(name)
     const [selectedFile, setSelectedFile] = useState(null)
     const [photoAlt, setPhotoAlt] = useState(photo_alt)
     const [photo, setPhoto] = useState(photo_src)
+    const [editModal, setEditModal] = useState(false)
+    const [removeModal, setRemoveModal] = useState(false)
+
 
     const onFileUpload = () => {
         console.log('selectedFile', selectedFile);
@@ -37,9 +40,23 @@ export default function Productitem({ product: { id = null, name = '', photo_alt
         }
     }
 
+
+    const handleEditOnClick = (e) => {
+        e.stopPropagation()
+        setEditModal(!editModal)
+        console.log("Edit has been clicked!");
+    }
+    const handleRemoveOnClick = (e) => {
+        e.stopPropagation()
+        setRemoveModal(!removeModal)
+        console.log("Edit has been clicked!");
+    }
     return (
         <>
+            <EditModal showModal={editModal} setShowModal={setEditModal} />
+            <RemoveModal showModal={removeModal} setShowModal={setRemoveModal} />
             {
+
                 id ? (
                     <Container>
                         <Link href={`/collections/${collection_id}/products/${id}`}>
@@ -48,8 +65,8 @@ export default function Productitem({ product: { id = null, name = '', photo_alt
                                 {
                                     mode === 'edit' && (
                                         <>
-                                            <ModifyButton mode="remove"></ModifyButton>
-                                            <ModifyButton mode="edit"></ModifyButton>
+                                            <ModifyButton onClick={handleRemoveOnClick} mode="remove"></ModifyButton>
+                                            <ModifyButton onClick={handleEditOnClick} mode="edit"></ModifyButton>
                                         </>
                                     )
                                 }

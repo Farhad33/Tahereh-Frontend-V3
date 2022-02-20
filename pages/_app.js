@@ -11,7 +11,10 @@ export default function MyApp({ Component, pageProps }) {
       grey: "#C9D2CA",
       midGrey: '#8a9b89',
       secondary: '#828282',
-      hoverColor: '#FAEA8A'
+      hoverColor: '#FAEA8A',
+      orangeColor: '#FFB546',
+      blackColor: '#000',
+      whiteColor: '#fff'
     },
     breakPoints: {
       mobile: "600px",

@@ -70,26 +70,3 @@ export const P = styled.p`
     font-weight: normal;
     color: #828282;
 `
-export const Button = styled.button`
-    width: 85px;
-    height: 38px;
-    border: 1px solid #828282;
-    box-sizing: border-box;
-    border-radius: 50px;
-    /* margin-top: 54px; */
-    /* margin-bottom: 54px; */
-    /* margin: 54px 22px; */
-    :hover{
-        box-shadow: 0px 0px 4px 1px rgba(14, 49, 15, 0.5);
-    }
-`
-
-export const YesButtom = styled(Button)`
-    color: #FFFFFF;
-    background: #FFB546;
-`
-
-export const NoButtom = styled(Button)`
-    color: #000000;
-    background: #FFFFFF;
-`
