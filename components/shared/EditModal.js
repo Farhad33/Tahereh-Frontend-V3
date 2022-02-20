@@ -3,35 +3,34 @@ import { Modal, YesButtom, NoButtom } from './Modal'
 import { useState } from 'react';
 import { Input } from './index';
 
-export function EditModal({ showModal, setShowModal }) {
-    const [form, setForm] = useState({
-        title: "",
-        photo_alt: "",
-        upload_photo: "",
-        description: ""
-    })
-    console.log("🚀 ~ file: EditModal.js ~ line 8 ~ EditModal ~ form", form)
-    const BlurHnadler = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
-        // handleSubmit(value);
+export function EditModal({ showModal, setShowModal, onSubmit }) {
+    const [name, setName] = useState('')
+    const [alt, setAlt] = useState('')
+    const [description, setDescription] = useState('')
+    const [selectedFile, setSelectedFile] = useState(null)
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const formData = new FormData();
+        formData.append("photo_src", selectedFile)
+        formData.append("photo_alt", alt)
+        formData.append("name", name)
+        formData.append("description", description)
+        onSubmit(formData)
     }
 
     return (
         <Modal button={true} showModal={showModal} setShowModal={setShowModal}>
-            <div>
-                <Form >
-                    <Input onBlur={BlurHnadler} name="title" type="text" required >Title</Input>
-                    <Input onBlur={BlurHnadler} name="photo_alt" type="text" required >Photo Alt</Input>
-                    <Input onBlur={BlurHnadler} name="upload_photo" type="file" required >Photo Alt</Input>
-                    <Input onBlur={BlurHnadler} name="description" type="textarea" required >Description</Input>
-
-                    {/* <button type="submit">Register</button> */}
-                </Form>
-            </div>
-            <Buttondiv>
-                <YesButtom>Save</YesButtom>
-                <NoButtom onClick={() => setShowModal(!showModal)}>Reset</NoButtom>
-            </Buttondiv>
+            <Form onSubmit={handleSubmit} >
+                <Input onChange={(e) => setName(e.target.value)} name="name" type="text" >Title</Input>
+                <Input onChange={(e) => setAlt(e.target.value)} name="photo_alt" type="text" >Photo Alt</Input>
+                <Input onChange={(e) => setSelectedFile(e.target.files[0])} name="upload_photo" type="file" >Photo Alt</Input>
+                <Input onChange={(e) => setDescription(e.target.value)} name="description" type="textarea" >Description</Input>
+                <Buttondiv>
+                    <YesButtom onClick={handleSubmit}>Save</YesButtom>
+                    <NoButtom onClick={() => setShowModal(!showModal)}>Reset</NoButtom>
+                </Buttondiv>
+            </Form>
         </Modal>
     )
 }

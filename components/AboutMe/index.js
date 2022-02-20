@@ -12,6 +12,10 @@ const Aboutme = () => {
                   .catch((err) => { console.log(err) })
       }, [])
 
+      const onSubmit = (formData) => {
+            api.put("/aboutme", formData)
+      }
+
       return (
             <Maindiv>
                   <h1><span>TA</span><span>HEREH</span></h1>
@@ -20,7 +24,7 @@ const Aboutme = () => {
                         <p>{aboutDetail.description}</p>
                   </Discription>
                   <ModifyButton onClick={() => setShowModal(!showModal)} />
-                  <EditModal showModal={showModal} setShowModal={setShowModal}></EditModal>
+                  <EditModal showModal={showModal} setShowModal={setShowModal} onSubmit={onSubmit} />
             </Maindiv >
       )
 }
