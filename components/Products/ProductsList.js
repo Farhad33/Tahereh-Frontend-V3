@@ -10,7 +10,6 @@ export default function ProductsList() {
     const props = router.query;
     const [productsList, setProductsList] = useState([])
     const [mode, setMode] = useState('read')
-    // console.log("🚀 ~ file: ProductsList.js ~ line 11 ~ ProductsList ~ props", props)
 
     useEffect(() => {
         if (props.collection_id) {

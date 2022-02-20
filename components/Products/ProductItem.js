@@ -17,7 +17,6 @@ export default function Productitem({ product: { id = null, name = '', photo_alt
 
 
     const onFileUpload = () => {
-        console.log('selectedFile', selectedFile);
         const formData = new FormData();
         formData.append("photo", selectedFile)
         formData.append("name", title)
@@ -44,12 +43,10 @@ export default function Productitem({ product: { id = null, name = '', photo_alt
     const handleEditOnClick = (e) => {
         e.stopPropagation()
         setEditModal(!editModal)
-        console.log("Edit has been clicked!");
     }
     const handleRemoveOnClick = (e) => {
         e.stopPropagation()
         setRemoveModal(!removeModal)
-        console.log("Edit has been clicked!");
     }
     return (
         <>

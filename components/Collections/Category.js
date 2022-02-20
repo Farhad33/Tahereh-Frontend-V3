@@ -29,12 +29,10 @@ export default function Category({ collection: { id = null, name = '', photo_alt
     const handleEditOnClick = (e) => {
         e.stopPropagation()
         setEditModal(!editModal)
-        console.log("Edit has been clicked!");
     }
     const handleRemoveOnClick = (e) => {
         e.stopPropagation()
         setRemoveModal(!removeModal)
-        console.log("Edit has been clicked!");
     }
 
     const data = { name: title, photo_alt: photoAlt}
