@@ -19,7 +19,7 @@ export function EditModal({ showModal, setShowModal }) {
     return (
         <Modal button={true} showModal={showModal} setShowModal={setShowModal}>
             <div>
-                <Form onSubmit="">
+                <Form >
                     <Input onBlur={BlurHnadler} name="title" type="text" required >Title</Input>
                     <Input onBlur={BlurHnadler} name="photo_alt" type="text" required >Photo Alt</Input>
                     <Input onBlur={BlurHnadler} name="upload_photo" type="file" required >Photo Alt</Input>

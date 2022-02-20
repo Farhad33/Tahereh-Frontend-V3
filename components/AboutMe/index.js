@@ -1,18 +1,27 @@
-import React from 'react'
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import api, { baseURL } from '../../util/api'
+import { ModifyButton, EditModal } from '../shared'
 
 const Aboutme = () => {
+      const [aboutDetail, setAboutDetail] = useState({})
+      const [showModal, setShowModal] = useState(false)
+      useEffect(() => {
+            api.get("/aboutme")
+                  .then((result) => { setAboutDetail(result.data) })
+                  .catch((err) => { console.log(err) })
+      }, [])
+
       return (
             <Maindiv>
                   <h1><span>TA</span><span>HEREH</span></h1>
                   <Discription>
-                        <img src="./img/02.jpg" alt="" />
-                        <p>For over 12 years, Tahereh Najafi has been a noteworthy sewing teacher in private institutions.
-                              You may know her work as the sewing teacher and dressmaker but she’s also credited with Ministry of Culture organization.
-                              Tahereh has been honored with many prizes at the Fashion Festival in Iran.
-                              She holds bachelor degree in fashion design.</p>
+                        <img src={baseURL + '/public/' + aboutDetail.photo_src} alt={aboutDetail.photo_alt} />
+                        <p>{aboutDetail.description}</p>
                   </Discription>
-            </Maindiv>
+                  <ModifyButton onClick={() => setShowModal(!showModal)} />
+                  <EditModal showModal={showModal} setShowModal={setShowModal}></EditModal>
+            </Maindiv >
       )
 }
 
