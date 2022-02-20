@@ -10,14 +10,16 @@ export function EditModal({ data, showModal, setShowModal, onSubmit }) {
     const [selectedFile, setSelectedFile] = useState(null)
 
     useEffect(() => {
+        console.log('data => ', data)
         setName(data.name)
         setAlt(data.photo_alt)
-        setDescription(data.description)
+        setDescription(data.description || '')
     }, [data])
 
     const handleSubmit = (e) => {
         e.preventDefault()
         const formData = new FormData();
+        console.log('name => ', name)
         formData.append("photo", selectedFile)
         formData.append("photo_alt", alt)
         formData.append("name", name)

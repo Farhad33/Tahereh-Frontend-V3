@@ -13,6 +13,7 @@ const Aboutme = () => {
       }, [])
 
       const onSubmit = (formData) => {
+            formData.append("id", 0)
             api.put("/aboutme", formData)
             .then((result) => {
                   setAboutDetail(result.data.result) 
@@ -20,6 +21,7 @@ const Aboutme = () => {
             })
             .catch((err) => { console.log(err) })
       }
+      
       return (
             <Maindiv>
                   <h1><span>TA</span><span>HEREH</span></h1>
