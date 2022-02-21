@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import api, { photoBaseURL } from '../../util/api'
+import { readJWT } from '../../util/token'
 import { ModifyButton, EditModal } from '../shared'
 
 const Aboutme = () => {
@@ -14,6 +15,7 @@ const Aboutme = () => {
 
       const onSubmit = (formData) => {
             formData.append("id", 0)
+            formData.append("JWT", readJWT())
             api.put("/aboutme", formData)
             .then((result) => {
                   setAboutDetail(result.data.result) 
@@ -21,7 +23,6 @@ const Aboutme = () => {
             })
             .catch((err) => { console.log(err) })
       }
-      
       return (
             <Maindiv>
                   <h1><span>TA</span><span>HEREH</span></h1>
