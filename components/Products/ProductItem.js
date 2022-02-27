@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { ModifyButton, EditModal, RemoveModal } from '../shared'
 
 
-export default function Productitem({ product: { id = null, name = '', photo_alt = '', photo_src = '' }, collection_id }) {
+export default function Productitem({ product: { id = null, name = '', photo_alt = '', photo_src = '' }, collection_id, is_not_link }) {
     const [mode, setMode] = useState('edit')
     const [title, setTitle] = useState(name)
     const [photoAlt, setPhotoAlt] = useState(photo_alt)
@@ -16,13 +16,13 @@ export default function Productitem({ product: { id = null, name = '', photo_alt
 
     const onSubmit = (formData) => {
         api.put(`/collections/${collection_id}/products/${id}`, formData)
-        .then((result) => {
-            setTitle(result.data.result.name)
-            setPhotoAlt(result.data.result.photo_alt)
-            setPhoto(result.data.result.photo_src)
-            setEditModal(!editModal)
-        })
-        .catch((err) => { console.log(err) })
+            .then((result) => {
+                setTitle(result.data.result.name)
+                setPhotoAlt(result.data.result.photo_alt)
+                setPhoto(result.data.result.photo_src)
+                setEditModal(!editModal)
+            })
+            .catch((err) => { console.log(err) })
     }
 
     const handleEditButton = () => {
@@ -52,8 +52,8 @@ export default function Productitem({ product: { id = null, name = '', photo_alt
 
                 id ? (
                     <Container>
-                        <Link href={`/collections/${collection_id}/products/${id}`}>
-                            <ImageContainer>
+                        {is_not_link ? (
+                            <ImageContainer is_not_link>
                                 <Image src={photoBaseURL + photo} alt={photo_alt} />
                                 {
                                     mode === 'edit' && (
@@ -64,7 +64,22 @@ export default function Productitem({ product: { id = null, name = '', photo_alt
                                     )
                                 }
                             </ImageContainer>
-                        </Link>
+                        ) : (
+                            <Link href={`/collections/${collection_id}/products/${id}`}>
+                                <ImageContainer>
+                                    <Image src={photoBaseURL + photo} alt={photo_alt} />
+                                    {
+                                        mode === 'edit' && (
+                                            <>
+                                                <ModifyButton onClick={handleRemoveOnClick} mode="remove"></ModifyButton>
+                                                <ModifyButton onClick={handleEditOnClick} mode="edit"></ModifyButton>
+                                            </>
+                                        )
+                                    }
+                                </ImageContainer>
+                            </Link>
+                        )
+                        }
                         {/* <Line /> */}
                     </Container>
                 ) : (
@@ -106,7 +121,7 @@ const ImageContainer = styled.div`
     min-width: 300px;
     height: 480px;
     border: 1px solid ${color.secondary};
-    cursor: pointer;
+    cursor: ${({ is_not_link }) => is_not_link ? "initial" : "pointer"};
 `
 
 const Image = styled.img`
