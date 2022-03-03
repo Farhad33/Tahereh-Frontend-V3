@@ -1,6 +1,9 @@
 import axios from 'axios'
 
-const baseURL = 'http://localhost:4001'
+const localBaseURL = 'http://localhost:4001'
+const productionBaseURL = 'https://nodjs-11.herokuapp.com'
+
+const baseURL = process.env.NODE_ENV === 'production' ? productionBaseURL : localBaseURL
 
 export const photoBaseURL = baseURL + '/public/'
 
