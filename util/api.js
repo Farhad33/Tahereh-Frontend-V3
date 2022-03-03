@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const localBaseURL = 'http://localhost:4001'
-const productionBaseURL = 'https://nodjs-11.herokuapp.com'
+const productionBaseURL = 'https://tahereh-backend.herokuapp.com'
 
 const baseURL = process.env.NODE_ENV === 'production' ? productionBaseURL : localBaseURL
 
