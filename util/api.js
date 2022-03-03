@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const localBaseURL = 'http://localhost:4001'
 const productionBaseURL = 'https://tahereh-back-end.vercel.app'
-const baseURL = process.env.NODE_ENV === 'production' ? productionBaseURL : localBaseURL
+const baseURL = process.env.NODE_ENV.mode === 'Production' ? productionBaseURL : localBaseURL
 
 export const photoBaseURL = baseURL + '/public/'
 
