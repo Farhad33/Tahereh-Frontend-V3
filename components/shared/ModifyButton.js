@@ -14,6 +14,7 @@ export const ModifyButton = styled.div`
     background-repeat: no-repeat;
     background-position: center;
     border-radius: 4px;
+    cursor: pointer;
     @media only screen and(max-width: 600px) {
         width: 15px;
         height: 15px;

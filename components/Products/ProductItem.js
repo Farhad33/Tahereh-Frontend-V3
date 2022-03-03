@@ -5,8 +5,8 @@ import { color } from '../../util/variables'
 import Link from 'next/link'
 import { ModifyButton, EditModal, RemoveModal } from '../shared'
 
+export default function Productitem({ product: { id = null, name = '', photo_alt = '', photo_src = '' }, collection_id, is_not_link, has_label }) {
 
-export default function Productitem({ product: { id = null, name = '', photo_alt = '', photo_src = '' }, collection_id, is_not_link }) {
     const [mode, setMode] = useState('edit')
     const [title, setTitle] = useState(name)
     const [photoAlt, setPhotoAlt] = useState(photo_alt)
@@ -52,21 +52,9 @@ export default function Productitem({ product: { id = null, name = '', photo_alt
 
                 id ? (
                     <Container>
-                        {is_not_link ? (
-                            <ImageContainer is_not_link>
-                                <Image src={photoBaseURL + photo} alt={photo_alt} />
-                                {
-                                    mode === 'edit' && (
-                                        <>
-                                            <ModifyButton onClick={handleRemoveOnClick} mode="remove"></ModifyButton>
-                                            <ModifyButton onClick={handleEditOnClick} mode="edit"></ModifyButton>
-                                        </>
-                                    )
-                                }
-                            </ImageContainer>
-                        ) : (
-                            <Link href={`/collections/${collection_id}/products/${id}`}>
-                                <ImageContainer>
+                        {
+                            is_not_link ? (
+                                <ImageContainer is_not_link>
                                     <Image src={photoBaseURL + photo} alt={photo_alt} />
                                     {
                                         mode === 'edit' && (
@@ -77,10 +65,29 @@ export default function Productitem({ product: { id = null, name = '', photo_alt
                                         )
                                     }
                                 </ImageContainer>
-                            </Link>
-                        )
+                            ) : (
+                                <Link href={`/collections/${collection_id}/products/${id}`}>
+                                    <ImageContainer>
+                                        <Image src={photoBaseURL + photo} alt={photo_alt} />
+                                        {
+                                            mode === 'edit' && (
+                                                <>
+                                                    <ModifyButton onClick={handleRemoveOnClick} mode="remove"></ModifyButton>
+                                                    <ModifyButton onClick={handleEditOnClick} mode="edit"></ModifyButton>
+                                                </>
+                                            )
+                                        }
+                                    </ImageContainer>
+                                </Link>
+                            )
+                        }
+                        {
+                            has_label &&
+                            <Text>{title}</Text>
                         }
                         {/* <Line /> */}
+
+
                     </Container>
                 ) : (
                     mode === 'edit' && (
@@ -146,4 +153,29 @@ const Title = styled.p`
     text-align: center;
     color: ${color.primary};
     font-size: 1.5rem;
+`
+
+
+const Text = styled.p`
+    font-family: 'Abril Fatface';
+    font-size: 5rem;
+    font-weight: bold;
+    color: #09321682;
+    opacity: 0.9;
+    position: absolute;
+    margin: auto;
+    top: 250px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    @media only screen and (max-width: 768px) {
+        font-size: 3.5rem;
+        top: 220px;
+        /* left: -45px; */
+    }
+    @media only screen and (max-width: 600px) {
+        font-size: 2.35rem;
+        top: 220px;
+        /* left: 0px; */
+    }
 `

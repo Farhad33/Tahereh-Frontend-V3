@@ -1,10 +1,12 @@
 import axios from 'axios'
 
-const baseURL = 'http://localhost:4001'
+const localBaseURL = 'http://localhost:4001'
+const productionBaseURL = 'https://tahereh-back-end.vercel.app'
+const baseURL = process.env.NODE_ENV === 'production' ? productionBaseURL : localBaseURL
 
 export const photoBaseURL = baseURL + '/public/'
 
-const instance =  axios.create({
+const instance = axios.create({
     baseURL,
     timeout: 5000
 })
