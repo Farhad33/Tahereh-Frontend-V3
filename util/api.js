@@ -1,9 +1,13 @@
 import axios from 'axios'
 
 const localBaseURL = 'http://localhost:4001'
-const productionBaseURL = 'https://tahereh-back-end.vercel.app'
-const baseURL = process.env.mode === 'Production' ? productionBaseURL : localBaseURL
+
+
+const productionBaseURL = 'https://tahereh-backend.herokuapp.com'
+
+const baseURL = process.env.NODE_ENV === 'production' ? productionBaseURL : localBaseURL
 console.log("process.env => ", process.env);
+
 export const photoBaseURL = baseURL + '/public/'
 
 const instance = axios.create({
