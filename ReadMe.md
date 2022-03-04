@@ -1,10 +1,5 @@
-1. Auth
-2. Admin
-3. Changing Contents (database)
-4. upload photos (HD)
-
-https://ondras.zarovi.cz/sql/demo/
-
+## Demo
+https://tahereh-frontend-v3.vercel.app/
 
 ## Desktop
 https://www.figma.com/proto/dkXwcJKzgxsfnwKyJyO6Dx/Avior-Design-Web?node-id=32%3A3&scaling=scale-down-width
