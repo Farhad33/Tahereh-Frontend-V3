@@ -9,7 +9,7 @@
     "start": "next start -p 4000"
   },
   "engines": {
-    "node": "16.x"
+    "node": "14.x"
   },
   "author": "Majid Rahimi",
   "license": "MIT",
