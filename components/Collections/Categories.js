@@ -8,14 +8,18 @@ import { ImageContainer } from '../shared/ImageContainer'
 export default function Categories() {
     const [collections, setCollections] = useState([])
     const [mode, setMode] = useState('read')
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
+        setLoading(true)
         api.get('/collections')
             .then(result => {
                 setCollections(result.data)
+                setLoading(false)
             })
     }, [])
 
+    if (loading) return "Loading..."
 
 
     return (
