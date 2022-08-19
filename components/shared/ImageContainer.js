@@ -7,7 +7,7 @@ position:relative;
     display: flex;
     justify-content: center;
     width: 100%;
-    height: 550px;
+    height: 400px;
     border: 1px solid ${color.secondary};
     cursor: pointer;
     margin: 0px;

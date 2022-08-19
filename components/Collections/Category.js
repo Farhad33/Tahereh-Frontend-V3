@@ -43,20 +43,23 @@ export default function Category({ collection: { id = null, name = '', photo_alt
             {
                 id ? (
                     <Container>
-                        <Link href={`collections/${id}/products`}>
-                            <ImageContainer>
-                                <Image src={photoBaseURL + photo} alt={photo_alt} />
-                                {
-                                    mode === 'edit' && (
-                                        <>
-                                            <ModifyButton onClick={handleRemoveOnClick} mode="remove"></ModifyButton>
-                                            <ModifyButton onClick={handleEditOnClick} mode="edit"></ModifyButton>
-                                        </>
-                                    )
-                                }
-                            </ImageContainer>
-                        </Link>
+                       
+                            <Link href={`collections/${id}/products`}>
+                                <ImageContainer>
+                                    <Image src={photoBaseURL + photo} alt={photo_alt} />
+                                    {
+                                        mode === 'edit' && (
+                                            <>
+                                                <ModifyButton onClick={handleRemoveOnClick} mode="remove"></ModifyButton>
+                                                <ModifyButton onClick={handleEditOnClick} mode="edit"></ModifyButton>
+                                            </>
+                                        )
+                                    }
+                                </ImageContainer>
+                            </Link>
+                       
                         <Title>{title}</Title>
+                        
                     </Container>
                 ) : (
                     mode === 'edit' && (

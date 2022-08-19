@@ -22,12 +22,29 @@ export default function Homepage() {
     return (
         product &&
         <Container>
-            <ProductItem key={product.id} product={product} is_not_link has_label />
-
+            <HomeImage>
+                <ProductItem key={product.id} product={product} is_not_link has_label />
+            </HomeImage>
         </Container>
     )
 }
 
+
+const HomeImage = styled.div `
+@media only screen and (max-width: 1550px) {
+    margin-top: 160px;
+}
+@media only screen and (max-width: 1064px) {
+    margin-top: 160px;
+}
+@media only screen and (max-width: 990px) {
+    margin-top: 200px;
+}
+@media only screen and (max-width: 760px) {
+    margin-top: 160px;
+}
+
+`
 const Container = styled.div`
     margin: auto;
     position: absolute;
@@ -48,6 +65,7 @@ const Container = styled.div`
         height: 330px;
         width: 280px;
     }
+    
 `
 const Picture = styled.div`
 position: relative;

@@ -125,8 +125,8 @@ const ImageContainer = styled.div`
     display: flex;
     justify-content: center;
     width: 20vw;
+    height: auto;
     min-width: 300px;
-    height: 480px;
     border: 1px solid ${color.secondary};
     cursor: ${({ is_not_link }) => is_not_link ? "initial" : "pointer"};
 `
